@@ -1,0 +1,26 @@
+shiny:
+  proxy:
+    port: 8080
+    authentication: simple
+    admin-groups: admins
+    users:
+    - name: jack
+      password: password
+      groups: admins
+    - name: jeff
+      password: password
+    docker:
+      url: http://localhost:2375
+  apps:
+  - name: 01_hello
+    display-name: Hello Application
+    description: Application which demonstrates the basics of a Shiny app
+    docker-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
+    docker-image: openanalytics/shinyproxy-demo
+  - name: 06_tabsets
+    docker-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
+    docker-image: openanalytics/shinyproxy-demo
+
+logging:
+  file:
+    shinyproxy.log
