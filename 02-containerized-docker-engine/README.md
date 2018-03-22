@@ -24,6 +24,3 @@ the containers for the users' Shiny apps.
 ## Notes on the configuration
 
 *	ShinyProxy will listen for HTTP traffic on port `8080`.
-
-*   Authentication is set to `simple`, which means that the valid logins are defined in the section `shiny.proxy.users`.
-Two users are defined: jack (an admin) and jeff (a regular user).

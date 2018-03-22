@@ -17,7 +17,4 @@ There is no clustering involved here: everything runs on a single host, or maybe
 
 *	ShinyProxy will listen for HTTP traffic on port `8080`.
 
-*   Authentication is set to `simple`, which means that the valid logins are defined in the section `shiny.proxy.users`.
-Two users are defined: jack (an admin) and jeff (a regular user).
-
-*	The docker URL is set to `http://localhost:2375`. More information about docker URLs can be found [here](TODO).
+*	The docker URL is set to `http://localhost:2375`. If your docker daemon is running in another location, update this URL in the `application.yml` file accordingly.
