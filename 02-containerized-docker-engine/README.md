@@ -23,4 +23,7 @@ the containers for the users' Shiny apps.
 
 ## Notes on the configuration
 
-*	ShinyProxy will listen for HTTP traffic on port `8080`.
+* ShinyProxy will listen for HTTP traffic on port `8080`.
+
+* The custom bridge network `sp-example-net` is needed to allow the containers to access each other using
+the container ID as hostname.

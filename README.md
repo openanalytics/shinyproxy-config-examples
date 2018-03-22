@@ -1,41 +1,37 @@
-# Example: containerized ShinyProxy with a Kubernetes cluster
+# ShinyProxy Configuration Examples
 
-In this example, ShinyProxy will run inside a Kubernetes cluster. Shiny containers will also be spawned
-in the same cluster. To make the application accessible outside the cluster, a NodePort service is created.
+ShinyProxy can be configured to run in very different scenarios. Consider the following:
 
-## How to run
+* For your first tryout, maybe you just want to use a single machine with a Java runtime and a docker daemon, and run `java -jar shinyproxy.jar`. And that's perfectly fine!
 
-1. Download the `Dockerfile` from the folder `kube-proxy-sidecar`.
-2. Open a terminal, go to the directory containing the Dockerfile, and run the following command to build it:
+* But then you'd like to place ShinyProxy *inside* a container itself, because then you don't need to install a Java runtime on the host...
 
-`sudo docker build . -t kube-proxy-sidecar`
+* And next up is a bigger deployment, where you cannot rely on a single docker host but instead need a load-balanced cluster to guarantee enough containers are available for all your users.
 
-3. Ensure the `kube-proxy-sidecar` image is available on all your kube nodes. E.g. by repeating the above steps on all nodes.
-4. Download the `Dockerfile` from the folder `shinyproxy-example`.
-5. Open a terminal, go to the directory containing the Dockerfile, and run the following command to build it:
+* Not wanting to create a _single point of failure_, you also deploy multiple instances of ShinyProxy, load-balanced by a nginx front server.
 
-`sudo docker build . -t shinyproxy-example`
+As you can see, the configuration of ShinyProxy and its surrounding environment can quickly grow from trivial to not-so-trivial!
+This repository offers some ready-to-use examples for various setups. Each example folder contains several configuration files, and an instructional README that explains how to go from a download to a running setup.
 
-6. Ensure the `shinyproxy-example` image is available on all your kube nodes.
-7. Open a terminal on a master node (where the `kubectl` command is available).
+## Available Examples
 
-8. Download the 3 `yaml` files from the folder where this README is located. 
-9. Run the following command to deploy a pod containing `shinyproxy-example` and `kube-proxy-sidecar`:
+This repository contains examples that are divided by several categories, explained below.
 
-`kubectl create -f sp-deployment.yaml`
+### Standalone vs containerized
 
-10. Run the following command to grant full privileges to the `default` service account which runs the above pod:
+In a *standalone* setup, ShinyProxy runs as a Java process on the host. In a *containerized* setup, ShinyProxy runs inside a container.
 
-`kubectl create -f sp-authorization.yaml`
+### Docker engine vs docker swarm vs kubernetes
 
-11. Run the following command to deploy a service exposing ShinyProxy outside the cluster:
+The term *docker engine* refers to a single, non-clustered docker installation. The engine is managed by a 'docker daemon', a process that can be accessed by the `docker` commandline executable, by a HTTP URL or by a Unix socket.
 
-`kubectl create -f sp-service.yaml`
+*Docker swarm* is a layer that groups multiple docker installations in a 'swarm' that can offer clustering capabilities, including failover, load balancing, etc.
 
-## Notes on the configuration
+*Kubernetes* is a container orchestration service that can be used as an alternative to docker swarm. Several major cloud vendors such as Amazon and Google offer ready-to-use kubernetes environments.
 
-* The `kube-proxy-sidecar` container is used to make the apiserver accessible on `http://localhost:8001` to the `shinyproxy-example` container.
+## Notes on the Examples Configuration
 
-* The service will expose ShinyProxy on all nodes, listening on port `32094`.
+All examples use the `simple` authentication method, which defines two users:
 
-* If you do not deploy the service, you can still access ShinyProxy from within the cluster on port `8080`.
+* jack, an administrator, with the password 'password'
+* jeff, a regular user, with the password 'password'
