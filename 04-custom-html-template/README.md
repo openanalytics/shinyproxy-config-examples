@@ -4,7 +4,7 @@ By default, ShinyProxy presents available apps in a simple list format. Apps hav
 This presentation can be overridden, however. In the example below, a custom **template** is activated, which changes the appearance
 of ShinyProxy in the browser.
 
-_Note:_ custom templates currently only work with the `develop` branch of ShinyProxy.
+_Note:_ custom templates currently only work with a `develop` build of ShinyProxy.
 
 ## How to run
 
@@ -18,10 +18,10 @@ _Note:_ custom templates currently only work with the `develop` branch of ShinyP
 
 ## How it works
 
-* The `application.yml` file contains the setting `template-path: ./templates/2col` which refers to the 'col2' template.
+* The `application.yml` file contains the setting `template-path: ./templates/2col` which refers to the '2col' template.
 You can point it to any folder containing your custom HTML files.
 
-* ShinyProxy uses [Thymeleaf](https://www.thymeleaf.org/) as its HTML rendering engine.
+* ShinyProxy uses [Thymeleaf](https://www.thymeleaf.org/) as its HTML templating engine.
 
 * Assets (css, images, etc) can be referred to using the `@{/assets/...}` Thymeleaf syntax. Such references will be resolved against
 the `assets` subfolder of the template.
