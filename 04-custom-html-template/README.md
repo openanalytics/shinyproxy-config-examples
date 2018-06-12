@@ -4,8 +4,6 @@ By default, ShinyProxy presents available apps in a simple list format. Apps hav
 This presentation can be overridden, however. In the example below, a custom **template** is activated, which changes the appearance
 of ShinyProxy in the browser.
 
-_Note:_ custom templates currently only work with a `develop` build of ShinyProxy.
-
 ## How to run
 
 1. Download [ShinyProxy](https://www.shinyproxy.io/downloads "ShinyProxy website")
