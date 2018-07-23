@@ -26,11 +26,11 @@
 <head lang="en">
 	<title th:text="${title}"></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" media="screen" th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" media="screen" th:href="@{${bootstrapCss}}" />
 	<link rel="stylesheet" media="screen" th:href="@{/css/default.css}"/>
 	<link rel="stylesheet" media="screen" th:href="@{/assets/css/1-col-portfolio.css}"/>
-	<script th:src="@{/webjars/jquery/2.2.2/jquery.min.js}"></script>
-	<script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+	<script th:src="@{${jqueryJs}}"></script>
+	<script th:src="@{${bootstrapJs}}"></script>
 </head>
 <body>
 	<div th:replace="../fragments/navbar :: navbar"></div>
@@ -39,12 +39,12 @@
 		<div th:each="app: ${apps}">
 			<div class="row" >
 				<div class="col-md-7">
-					<img class="img-responsive" th:src="@{/assets/img/{name}.png(name=${app.name})}"></img>
+					<img class="img-responsive" th:src="@{/assets/img/{name}.png(name=${app.id})}"></img>
 				</div>
 				<div class="col-md-5">
-					<h3 th:text="${app.displayName == null} ? ${app.name} : ${app.displayName}"></h3>
+					<h3 th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></h3>
 					<p th:if="${app.description != null}" th:text="${app.description}"></p>
-					<a class="btn btn-primary" th:href="@{/app/}+${app.name}">Start  <span class="glyphicon glyphicon-chevron-right"></span></a>
+					<a class="btn btn-primary" th:href="@{/app/}+${app.id}">Start  <span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 			</div>
 			<hr></hr>
