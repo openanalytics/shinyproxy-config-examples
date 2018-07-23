@@ -16,7 +16,7 @@ proxy:
     description: Application which demonstrates the basics of a Shiny app
     container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
     container-image: openanalytics/shinyproxy-demo
-    docker-network: sp-example-net
+    container-network: sp-example-net
   - id: 06_tabsets
     container-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
     container-image: openanalytics/shinyproxy-demo
