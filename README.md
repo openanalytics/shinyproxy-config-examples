@@ -35,3 +35,10 @@ All examples use the `simple` authentication method, which defines two users:
 
 * jack, an administrator, with the password 'password'
 * jeff, a regular user, with the password 'password'
+
+The demo applications all use the `openanalytics/shinyproxy-demo` image which
+you can pull using
+
+```
+sudo docker pull openanalytics/shinyproxy-demo
+```
