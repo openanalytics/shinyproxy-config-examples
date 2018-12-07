@@ -27,3 +27,7 @@ the containers for the users' Shiny apps.
 
 * The custom bridge network `sp-example-net` is needed to allow the containers to access each other using
 the container ID as hostname.
+
+* ShinyProxy expects relevant Docker images to be already available on the host. Before running this example, pull the Docker image used in this example with:
+
+`sudo docker pull openanalytics/shinyproxy-demo`
