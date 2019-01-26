@@ -57,8 +57,9 @@
 				alert("No active proxy!");
 				return;
 			}
+			var hostURL = $("#hostURL").val();
 			var endpointURL = Object.keys(currentProxy.targets)[0] + "/";
-			$("#proxyIFrame").attr("src", endpointURL);
+			$("#proxyIFrame").attr("src", hostURL + "/" + endpointURL);
 		}
 		
 		var killProxy = function() {
