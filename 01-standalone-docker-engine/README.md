@@ -4,6 +4,14 @@ This example represents the most straightforward setup: you run ShinyProxy as a 
 
 There is no clustering involved here: everything runs on a single host, or maybe two hosts if you have your Java runtime and docker engine on separate machines.
 
+## Requirement
+
+ShinyProxy expects relevant Docker images to be already available on the host. Before running this example, pull the Docker image used in this example with:
+
+```
+sudo docker pull openanalytics/shinyproxy-demo
+```
+
 ## How to run
 
 1. Download [ShinyProxy](https://www.shinyproxy.io/downloads "ShinyProxy website")
