@@ -29,4 +29,4 @@ In this example, the OAuth2 provider [Auth0](https://auth0.com) is used.
 
 * This example assumes that the node.js app runs on `http://localhost:8081`. If this is not the case, modify `app.js` accordingly.
 
-* If _heartbeat_ is enabled (by default, it is), then the launched proxy will automatically shut down after 1 minute if it is not displayed in the iframe. Use the [settings](https://www.shinyproxy.io/configuration/#general) `heartbeat-enabled` and `heartbeat-timeout` to control this behaviour.
+* If _heartbeat_ is enabled (by default, it is), then the launched proxy will automatically shut down after 1 minute if it is not accessed. Use the [settings](https://www.shinyproxy.io/configuration/#general) `heartbeat-enabled` and `heartbeat-timeout` to control this behaviour.
