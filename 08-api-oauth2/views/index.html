@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Example 08: OAuth2 API</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <div>
+      <p>Step 1: <a href="/authorize">log in</a></p>
+      <p>Current login: <span><%- access_token ? access_token : 'NONE' %></span></p>
+      <p>Step 2: <a href="/launch_proxy">launch a proxy</a></p>
+      <p>Active proxy: <span><%- proxyId ? proxyId : 'NONE' %></span></p>
+      <p>Step 3: <a href="/access_proxy" target="_blank">access the proxy</a></p>
+      <p>Step 4: <a href="/stop_proxy">stop the proxy</a></p>
+    </div>
+  </body>
+</html>
