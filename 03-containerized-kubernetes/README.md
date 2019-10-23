@@ -39,3 +39,19 @@ in the same cluster. To make the application accessible outside the cluster, a N
 * The service will expose ShinyProxy on all nodes, listening on port `32094`.
 
 * If you do not deploy the service, you can still access ShinyProxy from within the cluster on port `8080`.
+
+* To keep the example consise, the `cluster-admin` role is granted to the `default` service account.
+  Best-practice would be to add a dedicated service account and reference it via `serviceAccountName` in the deployment spec.
+  The following role is the minimal set of permissions:
+
+  ```yaml
+  kind: Role
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    namespace: example
+    name: example
+  rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  ```
