@@ -35,3 +35,9 @@ sudo docker pull openanalytics/shinyproxy-demo
 
 * The custom bridge network `sp-example-net` is needed to allow the containers to access each other using
 the container ID as hostname.
+
+* The ShinyProxy logs and container logs will be written inside of the ShinyProxy container. If you want to write logs to the host machine, you will need to bind mount the log folder in the docker run script. For example, 
+  * Set container-log-path to `./logs/container-logs`
+  * Set the name of the shinyproxy logging file as `logs/shinyproxy.log`
+  * Include `-v /shinyproxylogs:/opt/shinyproxy/logs` in the `docker run` script above
+
