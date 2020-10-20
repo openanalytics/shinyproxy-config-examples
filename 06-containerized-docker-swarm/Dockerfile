@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:11-jre
 
 RUN mkdir -p /opt/shinyproxy/
 RUN wget https://www.shinyproxy.io/downloads/shinyproxy-2.4.0.jar -O /opt/shinyproxy/shinyproxy.jar
