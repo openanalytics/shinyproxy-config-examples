@@ -8,7 +8,7 @@ the containers for the users' Shiny apps.
 
 ShinyProxy expects relevant Docker images to be already available on the host. Before running this example, pull the Docker image used in this example with:
 
-```
+```bash
 sudo docker pull openanalytics/shinyproxy-demo
 ```
 
@@ -19,15 +19,25 @@ sudo docker pull openanalytics/shinyproxy-demo
 3. Place the files in the same directory, e.g. `/home/user/sp`
 4. Create a docker network that ShinyProxy will use to communicate with the Shiny containers.
 
-`sudo docker network create sp-example-net`
+   ```bash
+   sudo docker network create sp-example-net
+   ```
 
 5. Open a terminal, go to the directory `/home/user/sp`, and run the following command to build the ShinyProxy image:
 
-`sudo docker build . -t shinyproxy-example`
+   ```bash
+   sudo docker build . -t shinyproxy-example
+   ```
 
 6. Run the following command to launch the ShinyProxy container:
 
-`sudo docker run -d -v /var/run/docker.sock:/var/run/docker.sock --net sp-example-net -p 8080:8080 shinyproxy-example`
+   ```bash
+   sudo docker run -v /var/run/docker.sock:/var/run/docker.sock:ro --group-add $(getent group docker | cut -d: -f3) --net sp-example-net -p 8080:8080 shinyproxy-example
+   ```
+
+   **Note**: inside the Docker container, ShinyProxy runs as a non-root user, therefore it does not have access to the Docker socket by default.
+    By adding the `--group-add $(getent group docker | cut -d: -f3)` option we ensure that the user is part of the `docker` group and thus has access to the Docker daemon.
+   **Note**: by adding the `-d` option to the command (just after `docker run`), the Docker container will run in the background.
 
 ## Notes on the configuration
 

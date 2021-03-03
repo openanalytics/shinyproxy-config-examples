@@ -1,4 +1,6 @@
 proxy:
+  title: Open Analytics Shiny Proxy
+  logo-url: https://www.openanalytics.eu/shinyproxy/logo.png
   port: 8080
   authentication: simple
   admin-groups: admins
@@ -11,7 +13,6 @@ proxy:
   container-backend: kubernetes
   kubernetes:
     internal-networking: true
-    url: http://localhost:8001
   specs:
   - id: 01_hello
     display-name: Hello Application

@@ -18,8 +18,3 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
-      - name: kube-proxy-sidecar
-        image: kube-proxy-sidecar
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 8001
