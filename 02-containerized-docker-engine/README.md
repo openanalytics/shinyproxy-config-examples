@@ -37,6 +37,7 @@ sudo docker pull openanalytics/shinyproxy-demo
 
    **Note**: inside the Docker container, ShinyProxy runs as a non-root user, therefore it does not have access to the Docker socket by default.
     By adding the `--group-add $(getent group docker | cut -d: -f3)` option we ensure that the user is part of the `docker` group and thus has access to the Docker daemon.
+
    **Note**: by adding the `-d` option to the command (just after `docker run`), the Docker container will run in the background.
 
 ## Notes on the configuration
