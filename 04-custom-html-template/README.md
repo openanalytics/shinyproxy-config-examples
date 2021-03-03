@@ -14,6 +14,8 @@ of ShinyProxy in the browser.
 
 `java -jar shinyproxy.jar`
 
+**Note**: change the `proxy.template-path` property in `application.yml` to the example you want to use (`1col`, `2col`, `modified_navbar`) .
+
 ## How it works
 
 * The `application.yml` file contains the setting `template-path: ./templates/2col` which refers to the '2col' template.
@@ -26,3 +28,15 @@ the `assets` subfolder of the template.
 
 * If a particular HTML file is missing from the template, the 
 default HTML file will be used: <https://github.com/openanalytics/shinyproxy/tree/master/src/main/resources/templates>
+
+## Where to find the original template files
+
+* `login.html`: <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/login.html>
+* `error.html`: <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/error.html>
+* `logout-success.html`:  <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/logout-success.html>
+* `app-access-denied.html`:  <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/app-access-denied.html>
+* `auth-error.html`:  <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/auth-error.html>
+* `admin.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/admin.html>
+* `index.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/index.html>
+* `app.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/app.html>
+* `navbar.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/fragments/navbar.html>

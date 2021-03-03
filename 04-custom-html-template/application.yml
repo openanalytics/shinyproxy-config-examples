@@ -1,6 +1,8 @@
 proxy:
+  title: Open Analytics Shiny Proxy
+  logo-url: https://www.openanalytics.eu/shinyproxy/logo.png
   port: 8080
-  template-path: ./templates/2col
+  template-path: ./templates/modified_navbar
   authentication: simple
   admin-groups: admins
   users:
