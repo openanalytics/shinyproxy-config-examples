@@ -8,12 +8,9 @@ possible to specify custom groups and assign apps to these groups.
 1. Download [ShinyProxy](https://www.shinyproxy.io/downloads "ShinyProxy website")
 2. Download the `application.yml` configuration file from the folder where this README is located.
 3. Place the jar and yml files in the same directory, e.g. `/home/user/sp`
-<!-- 4. Download all the files from the `templates` folder and place them in the folder containing your jar and yml files, e.g. `/home/user/sp/templates` -->
 4. Open a terminal, go to the directory `/home/user/sp`, and run the following command:
 
 `java -jar shinyproxy.jar`
-
-<!-- **Note**: change the `proxy.template-path` property in `application.yml` to the example you want to use (`1col`, `2col`, `modified_navbar`) . -->
 
 ## How it works
 
