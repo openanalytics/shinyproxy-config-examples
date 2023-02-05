@@ -14,11 +14,11 @@ in the same cluster. To make the application accessible outside the cluster, a N
 
 5. Create a docker network that ShinyProxy will use to communicate with the Shiny containers.
 
-`sudo docker network create -d overlay sp-example-net`
+`sudo docker network create -d overlay --attachable sp-example-net`
 
 6. Run the following command to launch the ShinyProxy container:
 
-`sudo docker service create --name sp-test-service --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock --publish 8080:8080 --network sp-example-net shinyproxy-example`
+`sudo docker service create --name sp-test-service --mount type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock --publish 8080:8080 --network sp-example-net --group $(getent group docker | cut -d: -f3) shinyproxy-example`
 
 ## Notes on the configuration
 
