@@ -22,25 +22,27 @@
 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+>
 <head lang="en">
-	<title th:text="${title}"></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" media="screen" th:href="@{${bootstrapCss}}" />
-	<link rel="stylesheet" media="screen" th:href="@{/css/default.css}"/>
-	<link rel="stylesheet" media="screen" th:href="@{/assets/css/1-col-portfolio.css}"/>
-	<script th:src="@{${jqueryJs}}"></script>
-	<script th:src="@{${bootstrapJs}}"></script>
-	<script th:src="@{${cookieJs}}"></script>
-	<script th:src="@{/js/new_version_check.js}"></script>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + ${bootstrapCss}}"/>
+    <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + '/css/default.css'}"/>
+    <link rel="stylesheet" media="screen" th:href="@{/assets/css/1-col-portfolio.css}"/>
+    <script th:src="@{${resourcePrefix} + ${jqueryJs}}"></script>
+    <script th:src="@{${resourcePrefix} + ${bootstrapJs}}"></script>
+    <script th:src="@{${resourcePrefix} + ${handlebars}}"></script>
+    <script th:src="@{${resourcePrefix} + '/js/shiny.app.js' }"></script>
+    <script th:src="@{${resourcePrefix} + '/js/shiny.api.js' }"></script>
+    <script th:src="@{${resourcePrefix} + '/js/shiny.connections.js'}"></script>
+    <script th:src="@{${resourcePrefix} + '/js/shiny.instances.js' }"></script>
+    <script th:src="@{${resourcePrefix} + '/js/shiny.ui.js' }"></script>
+    <script th:src="@{${resourcePrefix} + '/js/shiny.common.js'}"></script>
+    <script th:src="@{${resourcePrefix} + '/handlebars/precompiled.js'}"></script>
 </head>
 <body>
-	<!-- navigation bar -->
-	<div th:replace="../fragments/navbar :: navbar"></div>
-
-	<div id="new-version-banner" class="alert alert-info" role="alert" style="display:none;">
-		A new version of ShinyProxy is available <button id="new-version-btn" class="btn btn-default btn-sm" >Switch to new version!</button>
-	</div>
+<!-- navigation bar -->
+<div th:replace="fragments/navbar :: navbar"></div>
 
 	<div class="container" id="applist">
 		<div th:each="app: ${apps}">
@@ -57,5 +59,32 @@
 			<hr></hr>
 		</div>
 	</div>
+
+        <div th:if="${myAppsMode == 'Inline'}" class="col-md-5 col-lg-4 col-xs-12 myApps-inline">
+            <div class="myApps-title">
+                <h4>My apps</h4>
+            </div>
+            <div id="myApps" class="myApps">
+            </div>
+            <div class="myApps-footer">
+                <button onclick="Shiny.common.onStopAllApps();" id="stop-all-apps-btn" type="button"
+                        class="btn pull-left btn-danger">Stop all apps
+                </button>
+                <button type="button" disabled class="btn pull-left btn-danger" id="stopping-all-apps-btn">Stopping
+                    all apps...
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/modal :: modal"></div>
+
+<script type="text/javascript" th:inline="javascript">
+    $(window).on('load', function () {
+	window.Shiny.common.init([[${contextPath}]], [[${application_name}]], [[${spInstance}]], [[${appMaxInstances}]], [[${myAppsMode}]], [[${pauseSupported}]]);
+	window.Shiny.common.startIndex();
+    });
+</script>
 </body>
 </html>

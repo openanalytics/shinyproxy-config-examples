@@ -54,30 +54,22 @@ These properties can be used in the template as follows:
 <!-- Modify this in order to change how a single app looks. -->
 <th:block th:fragment="app(app)">
     <th:block th:if="${app != null}">
-        <li th:if="${!displayAppLogos}">
-            <a th:href="${@thymeleaf.getAppUrl(app)}"
-               th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></a>
+        <a
+                th:href="${@thymeleaf.openSwitchInstanceInsteadOfApp(app) ? '#' : @thymeleaf.getAppUrl(app)}"
+                class="list-group-item"
+                th:classappend="${@thymeleaf.openSwitchInstanceInsteadOfApp(app) ? 'app-link' : ''}"
+                th:data-app-id="${app.id}"
+        >
+            <span class="app-list-title" th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></span>
+            <br th:if="${appLogos.get(app) != null}"/>
+            <img th:if="${appLogos.get(app) != null}" th:src="${appLogos.get(app)}">
             <br th:if="${app.description != null}"/>
             <!-- The next line returns `default-category` when the property is not defined for the app:  -->
             <th-block th:text="${@thymeleaf.getTemplateProperty(app.id, 'dev-category', 'default-category')}"></th-block>
             <!-- The next line returns null when the property is not defined for the app:  -->
             <th-block th:text="${@thymeleaf.getTemplateProperty(app.id, 'maintainer')}"></th-block>
-        </li>
-        <div th:if="${displayAppLogos}" class="row" style="margin-top:20px;">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="media">
-                    <div class="media-left">
-                        <img th:if="${appLogos.get(app) != null}" th:src="${appLogos.get(app)}"></img>
-                    </div>
-                    <div class="media-body">
-                        <a th:href="${@thymeleaf.getAppUrl(app)}"
-                           th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></a>
-                        <br th:if="${app.description != null}"/>
-                        <span th:if="${app.description != null}" th:utext="${app.description}"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <span th:if="${app.description != null}" th:utext="${app.description}"></span>
+        </a>
     </th:block>
 </th:block>
 <!--End of the template.-->
@@ -93,4 +85,5 @@ These properties can be used in the template as follows:
 * `admin.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/admin.html>
 * `index.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/index.html>
 * `app.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/app.html>
-* `navbar.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/fragments/navbar.html>
+* `navbar.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/fragments/navbar.html>
+* `modal.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/fragments/modal.html>
