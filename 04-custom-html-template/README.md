@@ -26,7 +26,7 @@ You can point it to any folder containing your custom HTML files.
 * Assets (css, images, etc) can be referred to using the `@{/assets/...}` Thymeleaf syntax. Such references will be resolved against
 the `assets` subfolder of the template.
 
-* If a particular HTML file is missing from the template, the 
+* If a particular HTML file is missing from the template, the
 default HTML file will be used: <https://github.com/openanalytics/shinyproxy/tree/master/src/main/resources/templates>
 
 ## Template properties for an app
@@ -77,13 +77,16 @@ These properties can be used in the template as follows:
 
 ## Where to find the original template files
 
-* `login.html`: <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/login.html>
-* `error.html`: <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/error.html>
-* `logout-success.html`:  <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/logout-success.html>
-* `app-access-denied.html`:  <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/app-access-denied.html>
-* `auth-error.html`:  <https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/auth-error.html>
-* `admin.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/admin.html>
-* `index.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/index.html>
-* `app.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/app.html>
-* `navbar.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/fragments/navbar.html>
-* `modal.html`: <https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/fragments/modal.html>
+In order to directly download a file, right-click on the `Download` link and
+click `Save as`.
+
+* `login.html`: [View Online](https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/login.html) or [Download](https://raw.githubusercontent.com/openanalytics/containerproxy/master/src/main/resources/templates/login.html)
+* `error.html`: [View Online](https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/error.html) or [Download](https://raw.githubusercontent.com/containerproxy/blob/master/src/main/resources/templates/error.html)
+* `logout-success.html`: [View Online](https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/logout-success.html) or [Download](https://raw.githubusercontent.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/logout-success.html)
+* `app-access-denied.html`: [View Online](https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/app-access-denied.html) or [Download](https://raw.githubusercontent.com/containerproxy/blob/master/src/main/resources/templates/app-access-denied.html)
+* `auth-error.html`: [View Online](https://github.com/openanalytics/containerproxy/blob/master/src/main/resources/templates/auth-error.html) or [Download](https://raw.githubusercontent.com/containerproxy/blob/master/src/main/resources/templates/auth-error.html)
+* `admin.html`: [View Online](https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/admin.html) or [Download](https://raw.githubusercontent.com/shinyproxy/blob/master/src/main/resources/templates/admin.html)
+* `index.html`: [View Online](https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/index.html) or [Download](https://raw.githubusercontent.com/shinyproxy/blob/master/src/main/resources/templates/index.html)
+* `app.html`:  [View Online](https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/app.html) or [Download](https://raw.githubusercontent.com/shinyproxy/blob/master/src/main/resources/templates/app.html)
+* `navbar.html`: [View Online](https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/fragments/navbar.html) or [Download](https://raw.githubusercontent.com/shinyproxy/blob/master/src/main/resources/templates/fragments/navbar.html)
+* `modal.html`: [View Online](https://github.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/fragments/modal.html) or [Download](https://raw.githubusercontent.com/openanalytics/shinyproxy/blob/master/src/main/resources/templates/fragments/modal.html)
