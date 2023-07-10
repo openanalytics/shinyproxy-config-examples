@@ -3,6 +3,11 @@
 In this example, ShinyProxy will run inside a Kubernetes cluster. Shiny containers will also be spawned
 in the same cluster. To make the application accessible outside the cluster, a NodePort service is created.
 
+**Note: this example is the most basic way to deploy ShinyProxy on Kubernetes
+and should not be used in production. Use
+the [ShinyProxy Operator](https://github.com/openanalytics/shinyproxy-operator)
+for deploying ShinyProxy on Kubernetes.**
+
 ## How to run
 
 1. Download the `Dockerfile` and `application.yml` files from the folder `shinyproxy-example`.

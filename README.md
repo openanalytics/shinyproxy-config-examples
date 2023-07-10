@@ -29,6 +29,8 @@ The term *docker engine* refers to a single, non-clustered docker installation. 
 
 *Kubernetes* is a container orchestration service that can be used as an alternative to docker swarm. Several major cloud vendors such as Amazon and Google offer ready-to-use kubernetes environments.
 
+**Note: Always use the [ShinyProxy Operator](https://github.com/openanalytics/shinyproxy-operator) for deploying ShinyProxy on Kubernetes.**
+
 ## Notes on the Examples Configuration
 
 All examples use the `simple` authentication method, which defines two users:
