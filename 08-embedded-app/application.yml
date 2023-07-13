@@ -1,0 +1,19 @@
+proxy:
+  port: 8080
+  authentication: none
+  hide-navbar: true
+  docker:
+    url: http://localhost:2375
+  specs:
+  - id: 01_hello
+    display-name: Hello Application
+    description: Application which demonstrates the basics of a Shiny app
+    container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
+    container-image: openanalytics/shinyproxy-demo
+  - id: 06_tabsets
+    container-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
+    container-image: openanalytics/shinyproxy-demo
+
+logging:
+  file:
+    shinyproxy.log

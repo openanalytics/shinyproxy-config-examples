@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <title>Example: embedding a Shiny app</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style>
+            body ,html {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+            }
+            iframe {
+                height: 90%;
+                width: 100%;
+                border: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>This page embeds a Shiny App running in ShinyProxy!</h1>
+        <iframe frameborder="0" src="http://localhost:8080/app/06_tabsets"></iframe>
+    </body>
+</html>
