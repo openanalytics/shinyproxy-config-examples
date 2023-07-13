@@ -6,6 +6,8 @@ independent of using OpenID Connect (which allows authentication users in the
 browser). However, in most cases it makes sense to combine OAuth2 with using
 OpenID connect.
 
+[Complete API documentation](https://shinyproxy.io/documentation/api/)
+
 ## Without OpenID Connect
 
 1. set up an OAuth2 server, in case you don't already have
