@@ -1,6 +1,6 @@
 # Example: containerized ShinyProxy with a docker swarm
 
-In this example, ShinyProxy will run inside a Kubernetes cluster. Shiny containers will also be spawned
+In this example, ShinyProxy will run inside a Docker Swarm cluster. Shiny containers will also be spawned
 in the same cluster. To make the application accessible outside the cluster, a NodePort service is created.
 
 ## How to run
