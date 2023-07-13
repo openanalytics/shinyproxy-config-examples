@@ -23,6 +23,7 @@ sudo docker pull openanalytics/shinyproxy-demo
 
 ## Notes on the configuration
 
-*	ShinyProxy will listen for HTTP traffic on port `8080`.
-
-*	The docker URL is set to `http://localhost:2375`. If your docker daemon is running in another location, update this URL in the `application.yml` file accordingly.
+* ShinyProxy will listen for HTTP traffic on port `8080`.
+* The docker URL is set to `http://localhost:2375`. If your docker daemon is
+  running in another location, update this URL in the `application.yml` file
+  accordingly.

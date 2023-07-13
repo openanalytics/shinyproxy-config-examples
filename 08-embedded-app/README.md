@@ -1,4 +1,4 @@
-# Example: embed an app in a website using the API
+# Example: embed an app in a website
 
 Shiny apps are often embedded in other, larger contexts. For example, consider a
 portal-style webpage that shows a dashboard with components from different
