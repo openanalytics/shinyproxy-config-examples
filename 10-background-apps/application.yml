@@ -13,12 +13,14 @@ proxy:
   specs:
   - id: 01_hello
     display-name: Hello Application
-    description: Application which demonstrates the basics of a Shiny app
-    container-cmd: ["R", "-e", "shinyproxy::run_01_hello()"]
+    description: Default behaviour, app is stopped if not opened for 60 seconds. App is also stopped if the user logs out. If opened in a browser (or closed for less than 60 seconds and re-opened), the app can run indefinitely.
     container-image: openanalytics/shinyproxy-demo
-  - id: 06_tabsets
-    container-cmd: ["R", "-e", "shinyproxy::run_06_tabsets()"]
+
+  - id: 01_hello2
+    display-name: Hello Application
+    description: App is stopped if not opened for 5 minutes. App is also stopped if the user logs out. If opened in a browser (or closed for less than 5 minutes and re-opened), the app can run indefinitely.
     container-image: openanalytics/shinyproxy-demo
+    heartbeat-timeout: 3600000
 
   - id: rstudio1
     displayName: RStudio
@@ -34,7 +36,7 @@ proxy:
 
   - id: rstudio2
     displayName: RStudio
-    description: A RStudio server that is only terminated after 24 hours
+    description: A RStudio server that is only terminated after 24 hours, even if not opened in a browser or if the user logs out.
     containerImage: openanalytics/shinyproxy-rstudio-ide-demo:1.4.1106__4.0.4
     port: 8787
     container-env:
@@ -42,7 +44,7 @@ proxy:
       WWW_ROOT_PATH: "#{proxy.getRuntimeValue('SHINYPROXY_PUBLIC_PATH')}" 
     heartbeat-timeout: -1
     stop-on-logout: false
-    max-lifetime: 2
+    max-lifetime: 1440
 
   - id: rstudio3
     displayName: RStudio
