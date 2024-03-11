@@ -18,7 +18,7 @@ proxy:
 
   - id: 01_hello2
     display-name: Hello Application
-    description: App is stopped if not opened for 5 minutes. App is also stopped if the user logs out. If opened in a browser (or closed for less than 5 minutes and re-opened), the app can run indefinitely.
+    description: App is stopped if not opened for one hour. App is also stopped if the user logs out. If opened in a browser (or closed for less than 5 minutes and re-opened), the app can run indefinitely.
     container-image: openanalytics/shinyproxy-demo
     heartbeat-timeout: 3600000
 
