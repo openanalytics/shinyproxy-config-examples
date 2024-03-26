@@ -18,9 +18,8 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 3. Click on `App registrations`
 4. Click on `New registration`
 5. Fill in a name for the registration
-6. Choose `Accounts in this organizational directory only`. Do not use the
-   other options (not even for testing), unless you are aware of the
-   implications.
+6. Choose `Accounts in this organizational directory only`. Do not use the other
+   options (not even for testing), unless you are aware of the implications.
 7. In the `Redirect URI` section, choose `Web` and use the following value (
    replacing `shinyproxy-demo.local` with your domain name):
 
@@ -70,6 +69,7 @@ configure ShinyProxy.
 
     ```yaml
     proxy:
+      authentication: openid
       openid:
         # step 17: OAuth 2.0 Authorization endpoint (v2)
         auth-url: https://login.microsoftonline.com/.../oauth2/v2.0/authorize
@@ -91,12 +91,12 @@ configure ShinyProxy.
 You should now be able to login into ShinyProxy using an Azure user. You can
 create additional users by going to the `Users` page in Azure.
 
-## Configuring a username
+## Configuring the username
 
-The current setup will display the `sub` (subject) of the user. This is a
-generated value and is not user-friendly. We can configure Azure B2C to send the
-e-mail address of the user. The same steps can be used to use a different
-property.
+The current setup will use the `sub` (subject) of the user to identify it (this
+is e.g. shown in the navigation bar of ShinyProxy). This is a generated value
+and is not user-friendly. We can configure Azure B2C to send the e-mail address
+of the user. The same steps can be used to use a different property.
 
 1. In Azure B2C, go to `Token configuration`
 2. Click on `Add optional claim`
@@ -130,7 +130,7 @@ see [TODO](TODO).
 
 ## Configuring groups
 
-ShinyProxy can use the Azure groups for authorization:
+ShinyProxy can use the groups configured in Azure for authorization:
 
 > [!NOTE]  
 > Azure B2C will send the id of the group, instead of a human-friendly name.
@@ -139,8 +139,8 @@ ShinyProxy can use the Azure groups for authorization:
 
 1. In Azure B2C, go to `Token configuration`
 2. Click on `Add groups claim`
-3. Select `All groups` (the other options will work as well, this depends on your
-   use-case)
+3. Select `All groups` (the other options will work as well, this depends on
+   your use-case)
 4. Click on `Group ID` inside the `ID` section
 
    [![](img/07_groups.png)](img/07_groups.png)
@@ -175,15 +175,22 @@ Azure B2C:
       openid:
         logout-url: https://login.microsoftonline.com/.../oauth2/v2.0/logout
     ```
-   
+
 3. Restart ShinyProxy
 
 You can optionally add the `post_logout_redirect_uri` parameter if you want to
 redirect the user back to ShinyProxy e.g.:
 
-   
    ```yaml
    proxy:
      openid:
        logout-url: https://login.microsoftonline.com/.../oauth2/v2.0/logout?post_logout_redirect_uri=http%3A%2F%2Fshinyproxy-demo.local/logout-success
    ```
+
+## References
+
+- [Azure AD B2C documentation](https://learn.microsoft.com/en-us/azure/active-directory-b2c/)
+- [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/configuration/#openid-connect-oidc)
+- [ShinyProxy SpEL documentation](https://shinyproxy.io/documentation/spel/)
+- [ShinyProxy Troubleshooting OpenID documentation](https://shinyproxy.io/documentation/troubleshooting/#openid-connect-oidc)
+- TODO secret
