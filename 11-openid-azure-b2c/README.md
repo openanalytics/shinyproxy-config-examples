@@ -20,8 +20,8 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 5. Fill in a name for the registration
 6. Choose `Accounts in this organizational directory only`. Do not use the other
    options (not even for testing), unless you are aware of the implications.
-7. In the `Redirect URI` section, choose `Web` and use the following value (
-   replacing `shinyproxy-demo.local` with your domain name):
+7. In the `Redirect URI` section, choose `Web` and use the following value
+   (replacing `shinyproxy-demo.local` with your domain name):
 
    ```
    https://shinyproxy-demo.local/login/oauth2/code/shinyproxy
@@ -42,22 +42,21 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 
 14. On the next page, copy the secret in the `Value` column. Make sure to copy
     it now, since you'll not be able to retrieve it later. Make sure to not use
-    the `Secret ID`, you'll no need this value for the configuration.
+    the `Secret ID`, you'll not need this value for the configuration.
 
     [![](img/03_secret.png)](img/03_secret.png)
 
-15. Go back to the `Overview` page and note (or copy)
-    the `Application (client) ID` (number 1). You'll need this in the ShinyProxy
-    configuration.
+15. Go back to the `Overview` page copy the `Application (client) ID`. You'll
+    need this in the ShinyProxy configuration.
 
     [![](img/04_info.png)](img/04_info.png)
 
 16. Click on `Endpoints`
-17. Note (or copy) the `OAuth 2.0 Authorization endpoint (v2)`
+17. Copy the `OAuth 2.0 Authorization endpoint (v2)`
     and `OAuth 2.0 token endpoint (v2)` URLs. You'll need this in the ShinyProxy
     configuration.
-18. Click on `OpenID Connect metadata document` and note (or copy)
-    the `jwks_uri` value. You'll need this in the ShinyProxy
+18. Click on `OpenID Connect metadata document` and copy the `jwks_uri` value.
+    You'll need this in the ShinyProxy.
 
 ## Configuring ShinyProxy
 
@@ -71,15 +70,15 @@ configure ShinyProxy.
     proxy:
       authentication: openid
       openid:
-        # step 17: OAuth 2.0 Authorization endpoint (v2)
+        # see step 17 (of previous section): OAuth 2.0 Authorization endpoint (v2)
         auth-url: https://login.microsoftonline.com/.../oauth2/v2.0/authorize
-        # step 17: OAuth 2.0 token endpoint (v2)
+        # see step 17 (of previous section): OAuth 2.0 token endpoint (v2)
         token-url: https://login.microsoftonline.com/.../oauth2/v2.0/token
-        # step 18
+        # see step 18 (of previous section)
         jwks-url: https://login.microsoftonline.com/.../discovery/v2.0/keys
-        # step 15
+        # see step 15 (of previous section)
         client-id: 9edf3fd9-....
-        # step 14
+        # see step 14 (of previous section)
         client-secret: eB...
         username-attribute: sub
         scopes:
@@ -88,7 +87,7 @@ configure ShinyProxy.
 
 2. Restart ShinyProxy
 
-You should now be able to login into ShinyProxy using an Azure user. You can
+You should now be able to log in on ShinyProxy using an Azure user. You can
 create additional users by going to the `Users` page in Azure.
 
 ## Configuring the username
@@ -121,8 +120,11 @@ of the user. The same steps can be used to use a different property.
 
 8. Restart ShinyProxy
 
-It's possible to see which claims are being sent by ShinyProxy,
-see [TODO](TODO).
+When a user now logs in on ShinyProxy, the user is identified by their email
+address.
+
+It's possible to see all claims which are being sent to ShinyProxy,
+see [the documentation](https://shinyproxy.io/documentation/troubleshooting/#listing-all-claims-sent-by-the-openid-provider).
 
 > [!NOTE]  
 > Make sure that every user has an e-mail address configured. Otherwise, the
@@ -156,9 +158,9 @@ ShinyProxy can use the groups configured in Azure for authorization:
 
 7. Restart ShinyProxy
 
-When you now log-in ShinyProxy will receive the groups of a user from Azure B2C.
-You can check whether this works by starting an app and retrieving
-the `SHINYPROXY_USERGROUPS` environment variable.
+When a user now logs in on ShinyProxy, Azure B2C sends the groups of that user
+to ShinyProxy. You can check whether this works by starting an app and
+retrieving the `SHINYPROXY_USERGROUPS` environment variable.
 
 ## Logout
 

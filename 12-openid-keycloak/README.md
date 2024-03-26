@@ -16,8 +16,9 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 The complete setup and configuration of Keycloak is out of the scope of this
 example. Check
 the [Keycloak documentation](https://www.keycloak.org/documentation)
-and [example](https://www.keycloak.org/getting-started/getting-started-docker)
-for more information. Docker.
+and
+the [Docker example](https://www.keycloak.org/getting-started/getting-started-docker)
+for more information.
 
 ## Configuring Keycloak
 
@@ -29,7 +30,7 @@ for more information. Docker.
    [![](img/01_create_client.png)](img/01_create_client.png)
 
 5. Enable `Client authentication`, disable `Direct access grants`, make
-   sure `Stand flow` is enabled, click `Next`
+   sure `Standard flow` is enabled, click `Next`
 
    [![](img/02_create_client.png)](img/02_create_client.png)
 
@@ -74,38 +75,38 @@ configure ShinyProxy.
     proxy:
       authentication: openid
       openid:
-        # step 11: authorization_endpoint
+        # see step 11 (of previous section): authorization_endpoint
         auth-url: https://keycloak-demo.local/auth/realms/master/protocol/openid-connect/auth
-        # step 11: token_endpoint
+        # see step 11 (of previous section): token_endpoint
         token-url: https://keycloak-demo.local/auth/realms/master/protocol/openid-connect/token
-        # step 11: jwks_uri
+        # see step 11 (of previous section): jwks_uri
         jwks-url: https://keycloak-demo.local/auth/realms/master/protocol/openid-connect/certs
-        # step 4
+        # see step 4 (of previous section)
         client-id: shinyproxy-config-example
-        # step 9
+        # see step 9 (of previous section)
         client-secret: 1aB...
         username-attribute: preferred_username
     ```
 
 2. Restart ShinyProxy
 
-You should now be able to login into ShinyProxy using a Keycloak user. You can
+You should now be able to log in on ShinyProxy using a Keycloak user. You can
 create additional users by going to the `Users` page in Keycloak.
 
 ## Configuring the username
 
-The current setup will use the `preferred_username` of the user to identify it (
-this is e.g. shown in the navigation bar of ShinyProxy). This corresponds to the
-username field in the Keycloak UI. By default keycloak sends most user
+The current setup will use the `preferred_username` of the user to identify it
+(this is e.g. shown in the navigation bar of ShinyProxy). This corresponds to
+the username field in the Keycloak UI. By default keycloak sends most user
 information as part of the ID token. Therefore, you can immediately use these
 values to identify the user. For example, to use the e-mail address, change the
 change the `proxy.openid.username-attribute` in ShinyProxy to `email`:
 
-    ```yaml
-    proxy:
-      openid:
-        username-attribute: email
-    ```
+   ```yaml
+   proxy:
+     openid:
+       username-attribute: email
+   ```
 
 > [!NOTE]  
 > Make sure that every user has an e-mail address configured. Otherwise, the
@@ -132,9 +133,9 @@ can be used in ShinyProxy as groups, e.g. for adding authorization to apps.
 7. Click on `User Realm Role`
 8. Use `realm_roles` as `Name`
 9. Keep `Realm Role prefix` empty
-10. Keep the ` Multivalued` option enabled,
+10. Keep the `Multivalued` option enabled,
 11. Use `realm_roles` as `Token Claim Name`
-12. Use ` String` as `Claim JSON type`
+12. Use `String` as `Claim JSON type`
 13. Ensure the `Add to ID token` option is selected
 14. The `Add to access token` or `Add to userinfo` options may optionally be
     enabled, but are not required for ShinyProxy
@@ -152,8 +153,8 @@ can be used in ShinyProxy as groups, e.g. for adding authorization to apps.
 
 17. Restart ShinyProxy
 
-When you now log-in ShinyProxy will receive the roles of a user from Keycloak.
-You can check whether this works by starting an app and retrieving
+When a user now logs in on ShinyProxy, Keycloak sends the roles of that user to
+ShinyProxy. You can check whether this works by starting an app and retrieving
 the `SHINYPROXY_USERGROUPS` environment variable.
 
 ## Configuring groups
@@ -195,8 +196,8 @@ possible to use both roles and groups at the same time in ShinyProxy.
 
 15. Restart ShinyProxy
 
-When you now log-in ShinyProxy will receive the groups of a user from Keycloak.
-You can check whether this works by starting an app and retrieving
+When a user now logs in on ShinyProxy, Keycloak sends the groups of that user to
+ShinyProxy. You can check whether this works by starting an app and retrieving
 the `SHINYPROXY_USERGROUPS` environment variable.
 
 **Note**: do not use the built-in groups mapper of Keycloak as this mapper
@@ -305,6 +306,7 @@ to the new one.
 
 4. [Configure the logout url](#logout)
 5. Optionally: [Configure the username](#configuring-the-username)
+6. Restart ShinyProxy
 
 ## References
 
