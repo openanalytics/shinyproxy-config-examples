@@ -315,4 +315,4 @@ to the new one.
 - [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/configuration/#openid-connect-oidc)
 - [ShinyProxy SpEL documentation](https://shinyproxy.io/documentation/spel/)
 - [ShinyProxy Troubleshooting OpenID documentation](https://shinyproxy.io/documentation/troubleshooting/#openid-connect-oidc)
-- TODO secret
+- [ShinyProxy Docs on using environment variables](https://shinyproxy.io/documentation/configuration/#config-env-var)
