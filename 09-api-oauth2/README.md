@@ -26,8 +26,6 @@ OpenID connect.
             groups: admins
           - name: jeff
             password: password
-        docker:
-          url: http://localhost:2375
         specs:
           - id: 01_hello
             display-name: Hello Application
@@ -93,8 +91,6 @@ This will output all the specs that are available to the user.
         port: 8080
         authentication: openid
         admin-groups: admins
-        docker:
-          url: http://localhost:2375
         specs:
           - id: 01_hello
             display-name: Hello Application

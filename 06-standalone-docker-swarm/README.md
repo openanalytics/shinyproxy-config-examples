@@ -14,5 +14,6 @@ This example is very similar to example '01-standalone-docker-engine', except th
 ## Notes on the configuration
 
 *	ShinyProxy will listen for HTTP traffic on port `8080`.
-
-*	The docker URL is set to `http://localhost:2375`. If your docker daemon is running in another location, update this URL in the `application.yml` file accordingly. This URL must point to a _docker swarm manager_ node.
+* ShinyProxy connects to the Docker daemon using a Unix socket, make sure the
+  user running ShinyProxy has permission
+  to [use this socket](https://shinyproxy.io/documentation/getting-started/#access-to-docker-daemon).

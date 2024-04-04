@@ -11,8 +11,6 @@ proxy:
     groups: admins
   - name: jeff
     password: password
-  docker:
-    url: http://localhost:2375
   specs:
   - id: 01_hello
     display-name: Hello Application
