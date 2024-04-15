@@ -1,0 +1,30 @@
+proxy:
+  title: Open Analytics Shiny Proxy
+  logo-url: https://www.openanalytics.eu/shinyproxy/logo.png
+  authentication: simple
+  containerBackend: ecs
+
+  # The following settings are passed as environment variables
+  # See 9_shinyproxy-task-definition.tf
+  ecs:
+    name: ${CLUSTER_NAME}
+    region: ${AWS_REGION}
+    subnets:
+      - ${SUBNET_0}
+      - ${SUBNET_1}
+    security-groups: ${SECURITY_GROUP}
+
+  users:
+    - name: jack
+      password: password
+      groups: mathematicians
+  specs:
+    - id: 01_hello
+      display-name: Hello Application
+      description: Application which demonstrates the basics of a Shiny app
+      container-cmd: [ "R", "-e", "shinyproxy::run_01_hello()" ]
+      container-image: openanalytics/shinyproxy-demo
+      access-groups: [ scientists, mathematicians ]
+      # cpu and memory request are required, see: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html
+      container-cpu-request: 1024
+      container-memory-request: 2048

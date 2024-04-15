@@ -1,0 +1,55 @@
+proxy:
+  title: Open Analytics Shiny Proxy
+  logo-url: https://www.openanalytics.eu/shinyproxy/logo.png
+  authentication: simple
+  containerBackend: ecs
+
+# The following settings are passed as environment variables
+# See shinyproxy-task-definition.tf
+  ecs:
+    name: ${CLUSTER_NAME}
+    region: ${AWS_REGION}
+    subnets:
+      - ${SUBNET_0}
+      - ${SUBNET_1}
+    security-groups: ${SECURITY_GROUP}
+
+  users:
+    - name: jack
+      password: password
+      groups: mathematicians
+  specs:
+    - id: 01_hello
+      display-name: Hello Application
+      description: Application which demonstrates the basics of a Shiny app
+      container-cmd: [ "R", "-e", "shinyproxy::run_01_hello()" ]
+      container-image: docker.io/openanalytics/shinyproxy-demo
+#      container-image: 772435625456.dkr.ecr.eu-central-1.amazonaws.com/shinyproxy-demo:latest
+      access-groups: [ scientists, mathematicians ]
+      # cpu and memory request are required, see: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html
+      container-cpu-request: 1024
+      container-memory-request: 2048
+      max-instances: -1
+      ecs-execution-role: arn:aws:iam::772435625456:role/shinyproxy-ecs-demo-execution-role
+      ecs-task-role: arn:aws:iam::772435625456:role/shinyproxy-ecs-demo-task-role
+      # Additional example config (not required)
+      #
+      # ecs-execution-role: arn:aws:iam::772435625456:role/shinyproxy-ecs-demo-execution-role
+      # See: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html
+      # ecs-enable-execute-command: true
+      # ecs-ephemeral-storage-size: 100 # in gigabytes
+      # ecs-efs-volumes:
+      #  - name: myvolume
+      #    file-system-id: fs-010750647c19e71e0      # optional
+      #    access-point-id: fsap-0ca1c89c9fd924f51   # optional
+      #    transit-encryption: true                  # optional
+      #    use-iam: true                             # optional
+      # container-volumes:
+      #  - "myvolume:/my/mnt/point"
+    - id: 06_tabsets
+      container-cmd: [ "R", "-e", "shinyproxy::run_06_tabsets()" ]
+      container-image: 772435625456.dkr.ecr.eu-central-1.amazonaws.com/shinyproxy-demo:latest
+      access-groups: scientists
+      container-cpu-request: 1024
+      container-memory-request: 4096
+      ecs-execution-role: arn:aws:iam::772435625456:role/shinyproxy-ecs-demo-execution-role
