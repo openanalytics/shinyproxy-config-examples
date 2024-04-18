@@ -26,30 +26,35 @@ resource "aws_iam_role" "shinyproxy-task-role" {
       ]
     })
 
+  tags = local.common_tags
+}
 
-  inline_policy {
-    name = "shinyproxy"
-
-    policy = jsonencode({
-      Version   = "2012-10-17"
-      Statement = [
-        {
-          Action = [
-            "ecs:RunTask",
-            "ecs:ListTasks",
-            "ecs:StopTask",
-            "ecs:DescribeTasks",
-            "ecs:ListTagsForResource",
-            "ecs:RegisterTaskDefinition",
-            "ecs:DeregisterTaskDefinition",
-            "ecs:DeleteTaskDefinitions"
-          ]
-          Effect   = "Allow"
-          Resource = "*"
-        }
-      ]
-    })
-  }
+resource "aws_iam_policy" "shinyproxy-ecs-policy" {
+  name        = "shinyproxy-ecs-policy"
+  policy      = jsonencode({
+    Version   = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ecs:RunTask",
+          "ecs:ListTasks",
+          "ecs:StopTask",
+          "ecs:DescribeTasks",
+          "ecs:ListTagsForResource",
+          "ecs:RegisterTaskDefinition",
+          "ecs:DeregisterTaskDefinition",
+          "ecs:DeleteTaskDefinitions"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      }
+    ]
+  })
 
   tags = local.common_tags
+}
+
+resource "aws_iam_role_policy_attachment" "shinyproxy-ecs-policy" {
+  role       = aws_iam_role.shinyproxy-task-role.name
+  policy_arn = aws_iam_policy.shinyproxy-ecs-policy.arn
 }
