@@ -75,6 +75,19 @@ These properties can be used in the template as follows:
 <!--End of the template.-->
 ```
 
+## Request and response variables
+
+Every template can access the request and response variables:
+
+```html
+Request URI: <span th:text="${request.getRequestURI()}"></span>
+Status code: <span th:text="${response.getStatus()}"></span><br>
+```
+
+See the Java docs for all available methods:
+- [`request`](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpservletrequest)
+- [`response`](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpservletresponse)
+
 ## Where to find the original template files
 
 In order to directly download a file, right-click on the `Download` link and
