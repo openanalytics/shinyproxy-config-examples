@@ -6,7 +6,7 @@ CloudWatch logs for apps and allowing to use images stored on ECR.
 ## Steps
 
 1. Copy the files in
-   the [`21-ecs-execution-role/terraform`](21-ecs-execution-role/terraform)
+   the [`21-ecs-execution-role/terraform`](terraform)
    directory to the [`20-ecs-minimal/terraform`](../20-ecs-minimal/terraform)
    directory:
    ```bash
@@ -21,10 +21,10 @@ CloudWatch logs for apps and allowing to use images stored on ECR.
    tofu apply -var-file=main.tfvars
    ```
    The final lines of the output will contain `app_execution_role=...` remember
-   this values.
+   this value.
 4. Modify the `20-ecs-minimal/docker/application.yml` file:
-    - add the property `proxy.ecs.enable-cloudwatch: true`
-    - add the property `ecs-execution-role` to app `01_hello`, using the ARN shown
+    - add the property [`proxy.ecs.enable-cloudwatch: true`](https://shinyproxy.io/documentation/configuration/#ecs-enable-cloudwatch)
+    - add the property [`ecs-execution-role`](https://shinyproxy.io/documentation/configuration/#ecs-execution-role) to app `01_hello`, using the ARN shown
       in the output of step 3
       (e.g. `ecs-execution-role: arn:aws:iam::012345678912:role/shinyproxy-config-examples-app-execution-role`)
 5. [Update the ShinyProxy config](../20-ecs-minimal#updating-shinyproxy-configuration)
@@ -58,3 +58,8 @@ meaning to terraform.
     that allows to use the app execution role.
   - **aws_iam_role_policy_attachment.shinyproxy-pass-app-execution-role-policy**:
     attaches the IAM policy to the ShinyProxy task role
+    
+## References
+
+- [ECS Backend configuration](https://shinyproxy.io/documentation/configuration/#ecs)
+- [ECS App configuration](https://shinyproxy.io/documentation/configuration/#ecs-1)

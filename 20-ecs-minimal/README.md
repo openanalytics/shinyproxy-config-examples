@@ -28,7 +28,7 @@ In order to deploy this example:
    ```
 3. Configure [`terraform/main.tfvars`](terraform/main.tfvars)
     - fill in your AWS account id, region and zones
-    - choose a name for the ECS cluster. Note that other resources uses the
+    - choose a name for the ECS cluster. Note that other resources use the
       cluster name as part of their name.
 4. Initialize:
    ```bash
@@ -141,3 +141,8 @@ meaning to terraform.
 The setup in this directory can only use public Docker images for the apps. In
 order to use an image stored on ECR,
 see [21-ecs-execution-role](../21-ecs-execution-role).
+
+## References
+
+- [ECS Backend configuration](https://shinyproxy.io/documentation/configuration/#ecs)
+- [ECS App configuration](https://shinyproxy.io/documentation/configuration/#ecs-1)
