@@ -32,7 +32,7 @@ In order to deploy this example:
       cluster name as part of their name.
 4. Initialize:
    ```bash
-   cd terraform; tofu init
+   tofu init
    ```
 5. Create the infrastructure by running: 
    ```
@@ -112,15 +112,15 @@ meaning to terraform.
     automatically puts the ShinyProxy container as a target in it)
   - **aws_lb_listener.lb** creates a listener group for the LoadBalancer (the
     port on which it is accessible)
-- [`terraform/7_shinyproxy_sg.tf`](terraform/7_shinyproxy-sg.tf): creates a
+- [`terraform/7_shinyproxy_sg.tf`](terraform/7_shinyproxy_sg.tf): creates a
   security group (**aws_security_group.shinyproxy-sg**) for ShinyProxy:
   - ensures ShinyProxy can be accessed by the LoadBalancer
   - since the ShinyProxy Task is using this security group, it can be used
     as `source` in other security group rules
-- [`terraform/8_shinyproxy_sg.tf`](terraform/8_shinyproxy-sg.tf): creates a
+- [`terraform/8_app_sg.tf`](terraform/8_app_sg.tf): creates a
   security group (**aws_security_group.app-sg**) for the Shiny apps hosted on
   ShinyProxy, it ensures ShinyProxy can access the apps on port 3838
-- [`terraform/9_shinyproxy_task_definition.tf`](terraform/9_shinyproxy_task_definition.tf):
+- [`terraform/9_shinyproxy_task_defintion.tf`](terraform/9_shinyproxy_task_defintion.tf):
   creates an ECS Task Definition (**aws_ecs_task_definition.shinyproxy**) for
   running ShinyProxy on ECS:
   - uses the ECR image
