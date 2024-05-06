@@ -22,11 +22,11 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 
 5. On the new page, copy the `Domain`, `Client ID` and `Client Secret`. You'll
    need this in the ShinyProxy configuration.
-6. Scroll down to `Application URIs`,
+6. Scroll down to `Application URIs`
 7. Fill in the location of ShinyProxy (without any sub-path)
    in `Application Login URI`
-8. Add the following as `Allowed callback URLs` (
-   replacing `shinyproxy-demo.local`
+8. Add the following as `Allowed callback URLs`
+   (replacing `shinyproxy-demo.local`
    with your domain name):
 
    ```
@@ -175,7 +175,7 @@ custom metadata to send roles to ShinyProxy (or any other value):
 
    [![](img/06_app_metadata.png)](img/06_app_metadata.png)
 
-4. Click on `Save
+4. Click on `Save`
 5. In the left sidebar, click on `Actions`, click on `Library`, click
    on `Custom` and finally click on your custom Action
 6. Modify the code to be (you can remove the nickname attribute if you don't
