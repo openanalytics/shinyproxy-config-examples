@@ -23,42 +23,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 >
-<head lang="en">
-    <title th:text="${title}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + ${bootstrapCss}}"/>
-    <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + '/css/default.css'}"/>
-    <link rel="stylesheet" media="screen" th:href="@{/assets/css/1-col-portfolio.css}"/>
-    <script th:src="@{${resourcePrefix} + ${jqueryJs}}"></script>
-    <script th:src="@{${resourcePrefix} + ${bootstrapJs}}"></script>
-    <script th:src="@{${resourcePrefix} + ${handlebars}}"></script>
-    <script th:src="@{${resourcePrefix} + '/js/shiny.app.js' }"></script>
-    <script th:src="@{${resourcePrefix} + '/js/shiny.api.js' }"></script>
-    <script th:src="@{${resourcePrefix} + '/js/shiny.connections.js'}"></script>
-    <script th:src="@{${resourcePrefix} + '/js/shiny.instances.js' }"></script>
-    <script th:src="@{${resourcePrefix} + '/js/shiny.ui.js' }"></script>
-    <script th:src="@{${resourcePrefix} + '/js/shiny.common.js'}"></script>
-    <script th:src="@{${resourcePrefix} + '/handlebars/precompiled.js'}"></script>
-</head>
-<body>
-<!-- navigation bar -->
-<div th:replace="fragments/navbar :: navbar"></div>
+    <head lang="en">
+        <title th:text="${title}"></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + ${bootstrapCss}}"/>
+        <link rel="stylesheet" media="screen" th:href="@{${resourcePrefix} + '/css/default.css'}"/>
+        <link rel="stylesheet" media="screen" th:href="@{/assets/css/1-col-portfolio.css}"/>
+        <script th:src="@{${resourcePrefix} + ${jqueryJs}}"></script>
+        <script th:src="@{${resourcePrefix} + ${bootstrapJs}}"></script>
+        <script th:src="@{${resourcePrefix} + ${handlebars}}"></script>
+        <script th:src="@{${resourcePrefix} + '/js/shiny.app.js' }"></script>
+        <script th:src="@{${resourcePrefix} + '/js/shiny.api.js' }"></script>
+        <script th:src="@{${resourcePrefix} + '/js/shiny.connections.js'}"></script>
+        <script th:src="@{${resourcePrefix} + '/js/shiny.instances.js' }"></script>
+        <script th:src="@{${resourcePrefix} + '/js/shiny.ui.js' }"></script>
+        <script th:src="@{${resourcePrefix} + '/js/shiny.common.js'}"></script>
+        <script th:src="@{${resourcePrefix} + '/handlebars/precompiled.js'}"></script>
+    </head>
+    <body>
+        <!-- navigation bar -->
+        <div th:replace="fragments/navbar :: navbar"></div>
 
-	<div class="container" id="applist">
-		<div th:each="app: ${apps}">
-			<div class="row" >
-				<div class="col-md-7">
-					<img class="img-responsive" th:src="@{/assets/img/{name}.png(name=${app.id})}"></img>
-				</div>
-				<div class="col-md-5">
-					<h3 th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></h3>
-					<p th:if="${app.description != null}" th:text="${app.description}"></p>
-					<a class="btn btn-primary" th:href="@{/app/}+${app.id}">Start  <span class="glyphicon glyphicon-chevron-right"></span></a>
-				</div>
-			</div>
-			<hr></hr>
-		</div>
-	</div>
+        <div class="container" id="applist">
+            <div th:each="app: ${apps}">
+                <div class="row">
+                    <div class="col-md-7">
+                        <img class="img-responsive" th:if="${appLogos.get(app) != null}"
+                             th:with="logo=${appLogos.get(app)}" th:height="${logo.height}" th:src="${logo.src}"
+                             th:style="${logo.style}" th:width="${logo.width}">
+                    </div>
+                    <div class="col-md-5">
+                        <h3 th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></h3>
+                        <p th:if="${app.description != null}" th:text="${app.description}"></p>
+                        <a class="btn btn-primary" th:href="@{/app/}+${app.id}">Start <span
+                                class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+                </div>
+                <hr></hr>
+            </div>
+        </div>
 
         <div th:if="${myAppsMode == 'Inline'}" class="col-md-5 col-lg-4 col-xs-12 myApps-inline">
             <div class="myApps-title">
@@ -75,16 +78,14 @@
                 </button>
             </div>
         </div>
-    </div>
-</div>
 
-<div th:replace="fragments/modal :: modal"></div>
+        <div th:replace="fragments/modal :: modal"></div>
 
-<script type="text/javascript" th:inline="javascript">
-    $(window).on('load', function () {
-	window.Shiny.common.init([[${contextPath}]], [[${application_name}]], [[${spInstance}]], [[${appMaxInstances}]], [[${myAppsMode}]], [[${pauseSupported}]]);
-	window.Shiny.common.startIndex();
-    });
-</script>
-</body>
+        <script type="text/javascript" th:inline="javascript">
+            $(window).on('load', function () {
+                window.Shiny.common.init([[${contextPath}]], [[${application_name}]], [[${spInstance}]], [[${appMaxInstances}]], [[${myAppsMode}]], [[${pauseSupported}]]);
+                window.Shiny.common.startIndex();
+            });
+        </script>
+    </body>
 </html>

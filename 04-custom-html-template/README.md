@@ -61,8 +61,10 @@ These properties can be used in the template as follows:
                 th:data-app-id="${app.id}"
         >
             <span class="app-list-title" th:text="${app.displayName == null} ? ${app.id} : ${app.displayName}"></span>
-            <br th:if="${appLogos.get(app) != null}"/>
-            <img th:if="${appLogos.get(app) != null}" th:src="${appLogos.get(app)}">
+            <th:block th:if="${appLogos.get(app) != null}" th:with="logo=${appLogos.get(app)}">
+                <br/>
+                <img th:height="${logo.height}" th:src="${logo.src}" th:style="${logo.style}" th:width="${logo.width}">
+            </th:block>
             <br th:if="${app.description != null}"/>
             <!-- The next line returns `default-category` when the property is not defined for the app:  -->
             <th-block th:text="${@thymeleaf.getTemplateProperty(app.id, 'dev-category', 'default-category')}"></th-block>
