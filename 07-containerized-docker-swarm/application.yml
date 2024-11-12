@@ -24,4 +24,5 @@ proxy:
     container-network: sp-example-net
 
 logging:
-  file: shinyproxy.log
+  file:
+    name: shinyproxy.log

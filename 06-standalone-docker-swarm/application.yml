@@ -20,4 +20,5 @@ proxy:
     container-image: openanalytics/shinyproxy-demo
 
 logging:
-  file: shinyproxy.log
+  file:
+    name: shinyproxy.log

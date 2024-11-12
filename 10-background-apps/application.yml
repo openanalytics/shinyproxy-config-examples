@@ -61,4 +61,4 @@ proxy:
 
 logging:
   file:
-    namw: shinyproxy.log
+    name: shinyproxy.log
