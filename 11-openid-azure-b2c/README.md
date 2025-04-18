@@ -36,7 +36,7 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 11. Click `Client secrets`
 12. Click `New client secret`
 13. Give a description and choose an expire time. You'll have to create a new
-    secret and update the ShinyProx config before the timeout.
+    secret and update the ShinyProxy config before the timeout.
 
     [![](img/02_create_secret.png)](img/02_create_secret.png)
 
