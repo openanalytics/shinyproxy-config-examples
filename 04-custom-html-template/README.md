@@ -77,18 +77,27 @@ These properties can be used in the template as follows:
 <!--End of the template.-->
 ```
 
-## Request and response variables
+## Global variables
 
-Every template can access the request and response variables:
+Every template has its own specific set of variables that can be used. Checkout the original templates to find these variables.
+In addition, every template can make use of the following global variables:
+
+- [`request`](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpservletrequest): the current HTTP request
+- [`response`](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpservletresponse): the current HTTP response
+- `apps`: list of [specs](https://github.com/openanalytics/containerproxy/blob/master/src/main/java/eu/openanalytics/containerproxy/model/spec/ProxySpec.java) the user has access to
+- `appIds`: list of ids of the specs the user has access to
+- the [`thymeleaf`](https://github.com/openanalytics/shinyproxy/blob/master/src/main/java/eu/openanalytics/shinyproxy/Thymeleaf.java)
+  bean provides additional methods to get all specs (even if the user is not allowed
+  access to the spec)
+
+For example:
 
 ```html
 Request URI: <span th:text="${request.getRequestURI()}"></span>
 Status code: <span th:text="${response.getStatus()}"></span><br>
+Visible apps: <span th:text="${apps.size()}"></span><br>
+Total number of apps: <span th:text="${@thymeleaf.getAllApps().size()}"></span><br>
 ```
-
-See the Java docs for all available methods:
-- [`request`](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpservletrequest)
-- [`response`](https://jakarta.ee/specifications/servlet/4.0/apidocs/javax/servlet/http/httpservletresponse)
 
 ## Where to find the original template files
 
