@@ -1,0 +1,9 @@
+default: true
+MD004: # ul-style
+  style: dash
+MD013: false # line-length
+MD024: false # no-duplicate-heading
+MD031: false # blanks-around-fences
+MD033: false # no-inline-html
+MD045: false # no-alt-text
+MD059: false # descriptive-link-text

@@ -23,7 +23,7 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 7. In the `Redirect URI` section, choose `Web` and use the following value
    (replacing `shinyproxy-demo.local` with your domain name):
 
-   ```
+   ```text
    https://shinyproxy-demo.local/login/oauth2/code/shinyproxy
    ```
 
@@ -94,7 +94,7 @@ create additional users by going to the `Users` page in Azure.
 
 The current setup will use the `sub` (subject) of the user to identify it (this
 is e.g. shown in the navigation bar of ShinyProxy). This is a generated value
-and is not user-friendly. We can configure Azure B2C to send the e-mail address
+and isn't user-friendly. We can configure Azure B2C to send the e-mail address
 of the user. The same steps can be used to use a different property.
 
 1. In Azure B2C, go to `Token configuration`
@@ -105,7 +105,7 @@ of the user. The same steps can be used to use a different property.
    [![](img/05_email.png)](img/05_email.png)
 
 5. Click on `Add`
-6. In the pop-up that is opened,
+6. In the pop-up that'ss opened,
    select `Turn on the Microsfot Graph email permissions` and click `Add`:
 
    [![](img/06_email.png)](img/06_email.png)

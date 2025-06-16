@@ -1,18 +1,18 @@
-# Example: use the ShinyProxy API using OAuth2
+# Example: use the ShinyProxy API using OAuth 2.0
 
-ShinyProxy has an API that can be protected using the OAuth2 authorization
-framework. OAuth2 can be combined with any authentication backend and is
+ShinyProxy has an API that can be protected using the OAuth 2.0 authorization
+framework. OAuth 2.0 can be combined with any authentication backend and is
 independent of using OpenID Connect (which allows authentication users in the
-browser). However, in most cases it makes sense to combine OAuth2 with using
+browser). However, in most cases it makes sense to combine OAuth 2.0 with using
 OpenID connect.
 
 [Complete API documentation](https://shinyproxy.io/documentation/api/)
 
 ## Without OpenID Connect
 
-1. set up an OAuth2 server, in case you don't already have
+1. set up an OAuth 2.0 server, in case you don't already have
    one, [Keycloak](https://keycloak.org) is a good option
-2. launch ShinyProxy using the following configuration (adapt the OAuth2
+2. launch ShinyProxy using the following configuration (adapt the OAuth 2.0
    configuration):
 
       ```yaml
@@ -44,7 +44,7 @@ OpenID connect.
           username-attribute: preferred_username
       ```
 
-3. create an OAuth2 Access token for your user, for example, using Keycloak and
+3. create an OAuth 2.0 Access token for your user, for example, using Keycloak and
    the direct authentication flow:
 
     ```bash
@@ -81,9 +81,9 @@ This will output all the specs that are available to the user.
 
 ## Together with OpenID Connect
 
-1. set up an OAuth2 server, in case you don't already have
+1. set up an OAuth 2.0 server, in case you don't already have
    one, [Keycloak](https://keycloak.org) is a good option
-2. launch ShinyProxy using the following configuration (adapt the OAuth2
+2. launch ShinyProxy using the following configuration (adapt the OAuth 2.0
    configuration, but make sure to use the same client):
 
       ```yaml
@@ -117,7 +117,7 @@ This will output all the specs that are available to the user.
           username-attribute: preferred_username
       ```
 
-3. start an application. Every application will automatically get
+3. start an app. Every app will automatically get
    the `SHINYPROXY_OIDC_ACCESS_TOKEN` environment variable, which will contain a
    valid access token for the authenticated user.
 4. use the ShinyProxy API:

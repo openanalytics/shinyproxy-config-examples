@@ -1,32 +1,32 @@
 # Example: template groups
 
-Since ShinyProxy 2.6.0 it is possible to group apps on the overview page. It is
+Since ShinyProxy 2.6.0 it's possible to group apps on the overview page. it's
 possible to specify custom groups and assign apps to these groups.
 
 ## How to run
 
 1. Download [ShinyProxy](https://www.shinyproxy.io/downloads "ShinyProxy website")
 2. Download the `application.yml` configuration file from the folder where this README is located.
-3. Place the jar and yml files in the same directory, e.g. `/home/user/sp`
+3. Place the jar and yaml files in the same directory, e.g. `/home/user/sp`
 4. Open a terminal, go to the directory `/home/user/sp`, and run the following command:
 
 `java -jar shinyproxy.jar`
 
 ## How it works
 
-See the documentation for the [`template-groups`]() and [`template-group`]().
+See the documentation for the [`template-groups`](https://shinyproxy.io/documentation/configuration/#template-groups) and [`template-group`](https://shinyproxy.io/documentation/configuration/#template-group) properties.
 These are the only properties required to make this work.
 
 Screenshot:
 
 ![Screenshot of the template group feature](screenshot.png)
 
-**Note**: as is visible on the screenshot, apps that are not part of a group (or
+**Note**: as is visible on the screenshot, apps that aren't part of a group (or
 of a non-existing group) are grouped into the `Other` group.
 
 ## Using additional metadata for a group
 
-It is possible to specify extra metadata for a group. The default template of
+it's possible to specify extra metadata for a group. The default template of
 ShinyProxy only uses the `id` and `display-name` properties. Let's assume you
 want to specify `maintainer` for each group:
 

@@ -33,7 +33,7 @@ CloudWatch logs for apps and allowing to use images stored on ECR.
 ## Components
 
 This section lists all of the additional components. Note that the numbering of
-the files is solely to make it easier to understand, the file name has no
+the files is solely to make it easier to understand, the filename has no
 meaning to terraform.
 
 - [`terraform/11_app_execution_role.tf`](terraform/11_app_execution_role.tf):
@@ -48,7 +48,7 @@ meaning to terraform.
     ensures that the executor has permission to use AWS ECR for retrieving the
     ShinyProxy image and for pushing the logs into CloudWatch
   - this IAM role is very similar to the role created for ShinyProxy itself.
-    However, for the sake of clarity it is better to use a separate role for
+    However, for the sake of clarity it's better to use a separate role for
     ShinyProxy and for the apps. In addition, this makes it easier to extend
     either role.
 - [`terraform/12_shinyproxy_task_role_policy.tf`](terraform/12_shinyproxy_task_role_policy.tf):
@@ -58,7 +58,7 @@ meaning to terraform.
     that allows to use the app execution role.
   - **aws_iam_role_policy_attachment.shinyproxy-pass-app-execution-role-policy**:
     attaches the IAM policy to the ShinyProxy task role
-    
+
 ## References
 
 - [ECS Backend configuration](https://shinyproxy.io/documentation/configuration/#ecs)

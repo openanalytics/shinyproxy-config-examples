@@ -29,7 +29,7 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
    (replacing `shinyproxy-demo.local`
    with your domain name):
 
-   ```
+   ```text
    https://shinyproxy-demo.local/login/oauth2/code/shinyproxy
    ```
 
@@ -84,7 +84,7 @@ the user as an additional claim to ShinyProxy.
 
    [![](img/03_action_create.png)](img/03_action_create.png)
 
-7. Modify the code to be (the name of the claim should be a URI-lik namespace):
+7. Modify the code to be (the name of the claim should be a URI-link namespace):
 
     ```js
     exports.onExecutePostLogin = async (event, api) => {
@@ -120,7 +120,7 @@ see [the documentation](https://shinyproxy.io/documentation/troubleshooting/#lis
 
 ## Configuring roles
 
-In Auth0, it is possible to assign (multiple) roles to a user. These roles can
+In Auth0, it's possible to assign (multiple) roles to a user. These roles can
 be used in ShinyProxy as groups, e.g. for adding authorization to apps.
 
 > [!NOTE]  
@@ -159,7 +159,7 @@ the `SHINYPROXY_USERGROUPS` environment variable.
 
 ## Adding custom attributes to a user
 
-Besides using the native roles function of Auth0, it is also possible to use
+Besides using the native roles function of Auth0, it's also possible to use
 custom metadata to send roles to ShinyProxy (or any other value):
 
 1. Follow the steps in [Configuring the username](#configuring-the-username) in
@@ -202,7 +202,7 @@ custom metadata to send roles to ShinyProxy (or any other value):
 When a user now logs in on ShinyProxy, Auth0 sends the value of
 the `shinyproxy_roles` property in the `app_metadata` of that user to
 ShinyProxy. You can check whether this works by starting an app and retrieving
-the ` SHINYPROXY_USERGROUPS` environment variable.
+the `SHINYPROXY_USERGROUPS` environment variable.
 
 ## Logout
 

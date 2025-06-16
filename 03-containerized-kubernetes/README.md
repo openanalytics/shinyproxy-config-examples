@@ -1,10 +1,11 @@
 # Example: containerized ShinyProxy with a Kubernetes cluster
 
 In this example, ShinyProxy will run inside a Kubernetes cluster. Shiny containers will also be spawned
-in the same cluster. To make the application accessible outside the cluster, a NodePort service is created.
+in the same cluster. To make the app accessible outside the cluster, a NodePort service is created.
 
+TODO
 **Note: this example is the most basic way to deploy ShinyProxy on Kubernetes
-and should not be used in production. Use
+and shouldn't be used in production. Use
 the [ShinyProxy Operator](https://github.com/openanalytics/shinyproxy-operator)
 for deploying ShinyProxy on Kubernetes.**
 
@@ -19,7 +20,7 @@ for deploying ShinyProxy on Kubernetes.**
 
 3. Ensure the `shinyproxy-example` image is available on all your kube nodes.
 4. Open a terminal on a master node (where the `kubectl` command is available).
-5. Download the 3 `yaml` files from the folder where this README is located. 
+5. Download the 3 `yaml` files from the folder where this README is located.
 6. Run the following command to deploy a pod containing `shinyproxy-example`:
 
    ```bash
@@ -40,11 +41,11 @@ for deploying ShinyProxy on Kubernetes.**
 
 ## Notes on the configuration
 
-* The service will expose ShinyProxy on all nodes, listening on port `32094`.
+- The service will expose ShinyProxy on all nodes, listening on port `32094`.
 
-* If you do not deploy the service, you can still access ShinyProxy from within the cluster on port `8080`.
+- If you don't deploy the service, you can still access ShinyProxy from within the cluster on port `8080`.
 
-* To keep the example concise, the `cluster-admin` role is granted to the `default` service account.
+- To keep the example concise, the `cluster-admin` role is granted to the `default` service account.
   Best-practice would be to add a dedicated service account and reference it via `serviceAccountName` in the deployment spec.
   The following role is the minimal set of permissions:
 

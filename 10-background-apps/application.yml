@@ -27,7 +27,7 @@ proxy:
     port: 8787
     container-env:
       DISABLE_AUTH: true
-      WWW_ROOT_PATH: "#{proxy.getRuntimeValue('SHINYPROXY_PUBLIC_PATH')}" 
+      WWW_ROOT_PATH: "#{proxy.getRuntimeValue('SHINYPROXY_PUBLIC_PATH')}"
     heartbeat-timeout: -1
     stop-on-logout: false
     max-lifetime: -1
@@ -39,7 +39,7 @@ proxy:
     port: 8787
     container-env:
       DISABLE_AUTH: true
-      WWW_ROOT_PATH: "#{proxy.getRuntimeValue('SHINYPROXY_PUBLIC_PATH')}" 
+      WWW_ROOT_PATH: "#{proxy.getRuntimeValue('SHINYPROXY_PUBLIC_PATH')}"
     heartbeat-timeout: -1
     stop-on-logout: false
     max-lifetime: 1440
@@ -51,7 +51,7 @@ proxy:
     port: 8787
     container-env:
       DISABLE_AUTH: true
-      WWW_ROOT_PATH: "#{proxy.getRuntimeValue('SHINYPROXY_PUBLIC_PATH')}" 
+      WWW_ROOT_PATH: "#{proxy.getRuntimeValue('SHINYPROXY_PUBLIC_PATH')}"
     heartbeat-timeout: -1
     stop-on-logout: true
     max-lifetime: -1

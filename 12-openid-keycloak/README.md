@@ -39,7 +39,7 @@ for more information.
 7. Add the following as `Valid redirect URI` (replacing `shinyproxy-demo.local`
    with your domain name):
 
-   ```
+   ```text
    https://shinyproxy-demo.local/login/oauth2/code/shinyproxy
    ```
 
@@ -99,7 +99,7 @@ The current setup will use the `preferred_username` of the user to identify it
 (this is e.g. shown in the navigation bar of ShinyProxy). This corresponds to
 the username field in the Keycloak UI. By default keycloak sends most user
 information as part of the ID token. Therefore, you can immediately use these
-values to identify the user. For example, to use the e-mail address, change the
+values to identify the user. For example, to use the email address, change the
 change the `proxy.openid.username-attribute` in ShinyProxy to `email`:
 
    ```yaml
@@ -109,7 +109,7 @@ change the `proxy.openid.username-attribute` in ShinyProxy to `email`:
    ```
 
 > [!NOTE]  
-> Make sure that every user has an e-mail address configured. Otherwise, the
+> Make sure that every user has an email address configured. Otherwise, the
 > user will get an error when logging in.
 
 It's possible to see all claims which are being sent to ShinyProxy,
@@ -117,7 +117,7 @@ see [the documentation](https://shinyproxy.io/documentation/troubleshooting/#lis
 
 ## Configuring roles
 
-In Keycloak, it is possible to assign (multiple) roles to a user. These roles
+In Keycloak, it's possible to assign (multiple) roles to a user. These roles
 can be used in ShinyProxy as groups, e.g. for adding authorization to apps.
 
 1. Login into Keycloak
@@ -138,7 +138,7 @@ can be used in ShinyProxy as groups, e.g. for adding authorization to apps.
 12. Use `String` as `Claim JSON type`
 13. Ensure the `Add to ID token` option is selected
 14. The `Add to access token` or `Add to userinfo` options may optionally be
-    enabled, but are not required for ShinyProxy
+    enabled, but aren't required for ShinyProxy
 
     [![](img/07_roles.png)](img/07_roles.png)
 
@@ -162,7 +162,7 @@ the `SHINYPROXY_USERGROUPS` environment variable.
 In addition to roles, Keycloak also supports the concept of groups,
 see [Keycloak docs](https://www.keycloak.org/docs/latest/server_admin/#con-comparing-groups-roles_server_administration_guide)
 for the difference. Both Keycloak groups and Keycloak roles can be used in
-ShinyProxy as groups, e.g. for adding authorization to apps. It is, however, not
+ShinyProxy as groups, e.g. for adding authorization to apps. It's, however, not
 possible to use both roles and groups at the same time in ShinyProxy.
 
 1. Login into Keycloak
@@ -181,7 +181,7 @@ possible to use both roles and groups at the same time in ShinyProxy.
 10. Switch off the `Full group path` option
 11. Ensure the `Add to ID token` option is selected
 12. The `Add to access token` or `Add to userinfo` options may optionally be
-    enabled, but are not required for ShinyProxy
+    enabled, but aren't required for ShinyProxy
 
     [![](img/08_groups.png)](img/08_groups.png)
 
@@ -200,7 +200,7 @@ When a user now logs in on ShinyProxy, Keycloak sends the groups of that user to
 ShinyProxy. You can check whether this works by starting an app and retrieving
 the `SHINYPROXY_USERGROUPS` environment variable.
 
-**Note**: do not use the built-in groups mapper of Keycloak as this mapper
+**Note**: don't use the built-in groups mapper of Keycloak as this mapper
 provides the realm-roles of the user and not the groups.
 
 ## Logout
@@ -262,7 +262,7 @@ this library was deprecated by the Keycloak developers. In addition,
 the `openid` backend is fully compatible with Keycloak and has more
 (advances) features. Therefore, we deprecated the `keycloak` backend in
 ShinyProxy 3.0.0 (by adding a warning in the release notes and documentation)
-and starting with version 3.1.0 of ShinyProxy, the keycloak backend has been
+and starting with version 3.1.0 of ShinyProxy, the Keycloak backend has been
 removed. This section explains how you can easily migrate from the old backend
 to the new one.
 
@@ -301,10 +301,10 @@ to the new one.
         client-secret: example_secret
         # equivalent of proxy.keycloak.name-attribute
         # the Keycloak default is "name"
-        username-attribute: name 
+        username-attribute: name
     ```
 
-4. [Configure the logout url](#logout)
+4. [Configure the logout URL](#logout)
 5. Optionally: [Configure the username](#configuring-the-username)
 6. Restart ShinyProxy
 

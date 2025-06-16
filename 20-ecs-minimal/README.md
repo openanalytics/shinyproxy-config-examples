@@ -1,9 +1,9 @@
 # Example: running ShinyProxy on ECS (using ECS backend)
 
 This example demonstrates how to run ShinyProxy on ECS, while using the ECS
-backend to host applications. This example uses opentofu/terraform to configure
+backend to host apps. This example uses opentofu/terraform to configure
 the infrastructure. Even when not using opentofue/terraform, this is useful,
-since the code explains all the configuration that is required for this example.
+since the code explains all the configuration that's required for this example.
 
 ## Overview
 
@@ -34,8 +34,8 @@ In order to deploy this example:
    ```bash
    tofu init
    ```
-5. Create the infrastructure by running: 
-   ```
+5. Create the infrastructure by running:
+   ```bash
    tofu apply -var-file=main.tfvars
    ````
    The final lines of the output will contain `container_image_location=...`
@@ -86,13 +86,13 @@ meaning to terraform.
     the `assume_role_policy` (i.e. trust policy) gives permission for ECS to use
     this role
   - **aws_iam_policy.shinyproxy-ecs-policy**: provides the permission to create
-    ECS tasks tasks
+    ECS tasks
   - **aws_iam_role_policy_attachment.shinyproxy-ecs-policy**: attaches the
     policy to the role
 - [`terraform/5_shinyproxy_execution_role.tf`](terraform/5_shinyproxy_execution_role.tf):
   creates an IAM role (**aws_iam_role.shinyproxy-execution-role**) that acts as
   the Execution role (sometimes also called Task Execution role) for the
-  executor of the ShinyProxy service (the permissions in this role are not given
+  executor of the ShinyProxy service (the permissions in this role aren't given
   to ShinyProxy).
   - the `assume_role_policy` (i.e. trust policy) gives permission for ECS to use
     this role
@@ -105,13 +105,13 @@ meaning to terraform.
 - [`terraform/6_shinyproxy_lb.tf`](terraform/6_shinyproxy_lb.tf): configures a
   LoadBalancer:
   - **aws_security_group.lb**: creates a security group for the LoadBalancer,
-    such that it is accessible from the internet
+    such that it's accessible from the internet
   - **aws_lb.lb**: creates
     an [Application Load Balancer (ALB)](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html)
   - **aws_lb_target_group.lb** creates a target group for the LoadBalancer (ECS
     automatically puts the ShinyProxy container as a target in it)
   - **aws_lb_listener.lb** creates a listener group for the LoadBalancer (the
-    port on which it is accessible)
+    port on which it's accessible)
 - [`terraform/7_shinyproxy_sg.tf`](terraform/7_shinyproxy_sg.tf): creates a
   security group (**aws_security_group.shinyproxy-sg**) for ShinyProxy:
   - ensures ShinyProxy can be accessed by the LoadBalancer
