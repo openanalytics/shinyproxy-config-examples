@@ -1,0 +1,27 @@
+proxy:
+  title: "#{serverName == 'shinyproxy-demo.local' ? 'ShinyProxy Demo' : 'ShinyProxy Demo 2'}"
+  logo-url: "#{serverName == 'shinyproxy-demo.local' ? 'https://www.openanalytics.eu/shinyproxy/logo.png' : null}"
+  port: 8080
+  authentication: simple
+  admin-groups: admins
+  users:
+    - name: jack
+      password: password
+      groups: admins
+    - name: jeff
+      password: password
+  specs:
+    - id: app1
+      display-name: App 1
+      container-image: openanalytics/shinyproxy-demo
+      access-strict-expression: "#{serverName == 'shinyproxy-demo.local'}"
+      access-users: jack
+    - id: app2
+      display-name: App 2
+      container-cmd: [ "R", "-e", "shinyproxy::run_06_tabsets()" ]
+      container-image: openanalytics/shinyproxy-demo
+      access-strict-expression: "#{serverName == 'shinyproxy-demo2.local'}"
+
+logging:
+  file:
+    name: shinyproxy.log
