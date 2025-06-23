@@ -18,7 +18,7 @@ general [ShinyProxy OpenID documentation](https://shinyproxy.io/documentation/co
 3. Click on `App registrations`
 4. Click on `New registration`
 5. Fill in a name for the registration
-6. Choose `Accounts in this organizational directory only`. Do not use the other
+6. Choose `Accounts in this organizational directory only`. Don't use the other
    options (not even for testing), unless you are aware of the implications.
 7. In the `Redirect URI` section, choose `Web` and use the following value
    (replacing `shinyproxy-demo.local` with your domain name):
@@ -94,7 +94,7 @@ create additional users by going to the `Users` page in Azure.
 
 The current setup will use the `sub` (subject) of the user to identify it (this
 is e.g. shown in the navigation bar of ShinyProxy). This is a generated value
-and isn't user-friendly. We can configure Azure B2C to send the e-mail address
+and isn't user-friendly. We can configure Azure B2C to send the email address
 of the user. The same steps can be used to use a different property.
 
 1. In Azure B2C, go to `Token configuration`
@@ -105,7 +105,7 @@ of the user. The same steps can be used to use a different property.
    [![](img/05_email.png)](img/05_email.png)
 
 5. Click on `Add`
-6. In the pop-up that'ss opened,
+6. In the pop-up that's opened,
    select `Turn on the Microsfot Graph email permissions` and click `Add`:
 
    [![](img/06_email.png)](img/06_email.png)
@@ -127,7 +127,7 @@ It's possible to see all claims which are being sent to ShinyProxy,
 see [the documentation](https://shinyproxy.io/documentation/troubleshooting/#listing-all-claims-sent-by-the-openid-provider).
 
 > [!NOTE]  
-> Make sure that every user has an e-mail address configured. Otherwise, the
+> Make sure that every user has an email address configured. Otherwise, the
 > user will get an error when logging in.
 
 ## Configuring groups
@@ -136,8 +136,7 @@ ShinyProxy can use the groups configured in Azure for authorization:
 
 > [!NOTE]  
 > Azure B2C will send the id of the group, instead of a human-friendly name.
-> As far as we know, there is currently no proper way to send the name of the
-> groups.
+> See the next section for a solution that uses the display-name of groups.
 
 1. In Azure B2C, go to `Token configuration`
 2. Click on `Add groups claim`
@@ -161,6 +160,63 @@ ShinyProxy can use the groups configured in Azure for authorization:
 When a user now logs in on ShinyProxy, Azure B2C sends the groups of that user
 to ShinyProxy. You can check whether this works by starting an app and
 retrieving the `SHINYPROXY_USERGROUPS` environment variable.
+
+## Configuring groups using Microsoft Graph API
+
+Fetching the groups from Microsoft Graph API has two advantages: 1) it supports
+users with more than 200 groups and 2) the display-name of the group is used
+(instead of the id).
+
+In order to set this up in Azure:
+
+1. In Azure B2C, go to `API permissions`
+2. Click on `Add a permission`
+
+   [![](img/08_api_permissions.png)](img/08_api_permissions.png)
+
+3. Click on `Microsoft Graph`
+
+    [![](img/09_ms_graph.png)](img/09_ms_graph.png)
+
+4. Click on `Application permissions`
+
+   [![](img/10_app_permissions.png)](img/10_app_permissions.png)
+
+5. Search for `User.Read.All`, select it and click `Add permissions`
+
+   [![](img/11_user_read_all.png)](img/11_user_read_all.png)
+
+6. Click `Grant admin consent for ...`
+
+   [![](img/12_grant.png)](img/12_grant.png)
+
+7. Click `Yes`
+
+   [![](img/13_yes.png)](img/13_yes.png)
+
+8. Repeat all steps for the `Directory.Read.All` permission
+
+9. Configure ShinyProxy:
+
+    ```yaml
+    proxy:
+      openid:
+        scopes:
+          - offline_access
+          # adding the profile scope is required
+          - profile
+      ms-graph:
+        # same URL as for proxy.openid.token-url
+        token-url: https://login.microsoftonline.com/.../oauth2/v2.0/token
+        # same client-id as for proxy.openid.client-id
+        client-id: 9edf3fd9-....
+        # same client-secret as for proxy.openid.client-secret
+        client-secret: eB...
+        # copy the tenant-id from the overview page ("Directory (tenant) ID")
+        tenant-id: 404e982e-...
+    ```
+
+10. Restart ShinyProxy
 
 ## Logout
 
