@@ -194,7 +194,7 @@ In order to set this up in Azure:
 
    [![](img/13_yes.png)](img/13_yes.png)
 
-8. Repeat all steps for the `Directory.Read.All` permission
+8. Repeat all steps for the `Group.Read.All` permission
 
 9. Configure ShinyProxy:
 
