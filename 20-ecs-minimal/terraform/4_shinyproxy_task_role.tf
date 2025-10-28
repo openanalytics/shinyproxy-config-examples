@@ -39,8 +39,10 @@ resource "aws_iam_policy" "shinyproxy-ecs-policy" {
           "ecs:RunTask",
           "ecs:ListTasks",
           "ecs:StopTask",
+          "ecs:TagResource",
           "ecs:DescribeTasks",
           "ecs:ListTagsForResource",
+          "ecs:ListTaskDefinitions",
           "ecs:RegisterTaskDefinition",
           "ecs:DeregisterTaskDefinition",
           "ecs:DeleteTaskDefinitions"

@@ -45,6 +45,7 @@ resource "aws_ecs_task_definition" "shinyproxy" {
           "awslogs-stream-prefix" = "shinyproxy"
         }
       }
+      stopTimeout = 120
     }
   ])
 
