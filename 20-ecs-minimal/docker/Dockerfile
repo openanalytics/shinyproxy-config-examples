@@ -1,3 +1,3 @@
-FROM openanalytics/shinyproxy:3.2.3
+FROM openanalytics/shinyproxy:3.2.4
 
 COPY application.yml /opt/shinyproxy/
