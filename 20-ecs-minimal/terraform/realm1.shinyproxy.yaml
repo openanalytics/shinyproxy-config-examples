@@ -1,18 +1,24 @@
+server:
+  servlet:
+    context-path: /
 proxy:
-  title: Open Analytics Shiny Proxy
+  stop-proxies-on-shutdown: false
+  title: "Open Analytics Shiny Proxy"
   logo-url: https://www.openanalytics.eu/shinyproxy/logo.png
   authentication: simple
-  containerBackend: ecs
 
-  # The following settings are passed as environment variables
-  # See 9_shinyproxy-task-definition.tf
+  containerBackend: ecs
+  realm-id: realm1
+  admin-users:
+    - jack
+
   ecs:
-    name: ${CLUSTER_NAME}
-    region: ${AWS_REGION}
+    name: ${ecs_cluster_name}
+    region: ${ecs_region}
     subnets:
-      - ${SUBNET_0}
-      - ${SUBNET_1}
-    security-groups: ${SECURITY_GROUP}
+      - ${ecs_subnet_0}
+      - ${ecs_subnet_1}
+    security-groups: ${ecs_security_group}
 
   users:
     - name: jack
@@ -28,3 +34,8 @@ proxy:
       # cpu and memory request are required, see: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html
       container-cpu-request: 1024
       container-memory-request: 2048
+
+fqdn: ${loadbalancer_fqdn}
+image: registry.openanalytics.eu/openanalytics/shinyproxy-snapshot:3.3.0-SNAPSHOT-20261013.115715
+cpu-request: 512
+memory-request: 1024

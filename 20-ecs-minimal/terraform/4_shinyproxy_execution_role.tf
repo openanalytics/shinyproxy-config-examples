@@ -1,10 +1,9 @@
 resource "aws_iam_role" "shinyproxy-execution-role" {
-
   name = "${var.cluster_name}-execution-role"
 
   assume_role_policy = jsonencode(
     {
-      Version   = "2012-10-17"
+      Version = "2012-10-17"
       Statement = [
         {
           Effect = "Allow",
@@ -24,24 +23,28 @@ resource "aws_iam_role" "shinyproxy-execution-role" {
           }
         }
       ]
-    })
-
-  inline_policy {
-    name = "ecs-logs"
-
-    policy = jsonencode({
-      Version   = "2012-10-17"
-      Statement = [
-        {
-          Action   = ["logs:CreateLogGroup"]
-          Effect   = "Allow"
-          Resource = "*"
-        }
-      ]
-    })
-  }
-
-  managed_policy_arns = ["arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"]
+  })
 
   tags = local.common_tags
+}
+
+resource "aws_iam_role_policy" "shinyproxy-execution-role-ecs-logs" {
+  name = "ecs-logs"
+  role = aws_iam_role.shinyproxy-execution-role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action   = ["logs:CreateLogGroup"]
+        Effect   = "Allow"
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "shinyproxy-execution-role-ecs-task-execution" {
+  role       = aws_iam_role.shinyproxy-execution-role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }

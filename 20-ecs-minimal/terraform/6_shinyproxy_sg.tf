@@ -13,7 +13,7 @@ resource "aws_security_group" "shinyproxy-sg" {
     protocol        = "tcp"
     from_port       = 9090
     to_port         = 9090
-    security_groups = [aws_security_group.lb.id]
+    security_groups = [aws_security_group.lb.id, aws_security_group.shinyproxy-operator-sg.id]
   }
 
   egress {

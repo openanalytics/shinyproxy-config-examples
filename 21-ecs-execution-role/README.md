@@ -36,7 +36,7 @@ This section lists all of the additional components. Note that the numbering of
 the files is solely to make it easier to understand, the filename has no
 meaning to terraform.
 
-- [`terraform/11_app_execution_role.tf`](terraform/11_app_execution_role.tf):
+- [`terraform/18_app_execution_role.tf`](terraform/11_app_execution_role.tf):
   creates an IAM role (**aws_iam_role.shinyproxy-app-execution-role**) that can
   be used as the execution role for apps.
   - the `assume_role_policy` (i.e. trust policy) gives permission for ECS to use
@@ -51,7 +51,7 @@ meaning to terraform.
     However, for the sake of clarity it's better to use a separate role for
     ShinyProxy and for the apps. In addition, this makes it easier to extend
     either role.
-- [`terraform/12_shinyproxy_task_role_policy.tf`](terraform/12_shinyproxy_task_role_policy.tf):
+- [`terraform/19_shinyproxy_task_role_policy.tf`](terraform/12_shinyproxy_task_role_policy.tf):
   provides an additional permission to the ShinyProxy Task role, such that
   ShinyProxy is allowed to create ECS tasks using the Execution role.
   - **aws_iam_policy.shinyproxy-pass-app-execution-role-policy**: an IAM policy

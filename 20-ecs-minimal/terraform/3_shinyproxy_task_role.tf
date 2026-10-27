@@ -4,7 +4,7 @@ resource "aws_iam_role" "shinyproxy-task-role" {
 
   assume_role_policy = jsonencode(
     {
-      Version   = "2012-10-17"
+      Version = "2012-10-17"
       Statement = [
         {
           Effect = "Allow",
@@ -24,15 +24,15 @@ resource "aws_iam_role" "shinyproxy-task-role" {
           }
         }
       ]
-    })
+  })
 
   tags = local.common_tags
 }
 
 resource "aws_iam_policy" "shinyproxy-ecs-policy" {
-  name        = "shinyproxy-ecs-policy"
-  policy      = jsonencode({
-    Version   = "2012-10-17"
+  name = "${var.cluster_name}-shinyproxy-ecs-policy"
+  policy = jsonencode({
+    Version = "2012-10-17"
     Statement = [
       {
         Action = [
@@ -49,6 +49,14 @@ resource "aws_iam_policy" "shinyproxy-ecs-policy" {
         ]
         Effect   = "Allow"
         Resource = "*"
+      },
+      {
+        Action = ["s3:GetObject"]
+        Effect = "Allow"
+        Resource = [
+          "arn:aws:s3:::${aws_s3_bucket.shinyproxy-operator-bucket.id}",
+          "arn:aws:s3:::${aws_s3_bucket.shinyproxy-operator-bucket.id}/*"
+        ]
       }
     ]
   })
