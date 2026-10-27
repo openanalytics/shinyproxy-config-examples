@@ -28,8 +28,8 @@ resource "aws_iam_role" "shinyproxy-execution-role" {
   tags = local.common_tags
 }
 
-resource "aws_iam_role_policy" "shinyproxy-execution-role-ecs-logs" {
-  name = "ecs-logs"
+resource "aws_iam_role_policy" "shinyproxy-policy-ecs-logs" {
+  name = "${var.cluster_name}-ecs-logs"
   role = aws_iam_role.shinyproxy-execution-role.id
 
   policy = jsonencode({

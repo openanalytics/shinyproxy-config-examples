@@ -22,13 +22,17 @@ CloudWatch logs for apps and allowing to use images stored on ECR.
    ```
    The final lines of the output will contain `app_execution_role=...` remember
    this value.
-4. Modify the `20-ecs-minimal/docker/application.yml` file:
+4. Modify the `20-ecs-minimal/realm1.shinyproxy.yml` file:
     - add the property [`proxy.ecs.enable-cloudwatch: true`](https://shinyproxy.io/documentation/configuration/#ecs-enable-cloudwatch)
     - add the property [`ecs-execution-role`](https://shinyproxy.io/documentation/configuration/#ecs-execution-role) to app `01_hello`, using the ARN shown
       in the output of step 3
       (e.g. `ecs-execution-role: arn:aws:iam::012345678912:role/shinyproxy-config-examples-app-execution-role`)
-5. [Update the ShinyProxy config](../20-ecs-minimal#updating-shinyproxy-configuration)
-6. After you launch an app, you can view the logs in the AWS console
+5. Update the infrastructure:
+   ```bash
+   tofu apply -var-file=main.tfvars
+   ```
+6. Wait for the new instance to start up
+7. After you launch an app, you can view the logs in the AWS console
 
 ## Components
 
@@ -36,7 +40,7 @@ This section lists all of the additional components. Note that the numbering of
 the files is solely to make it easier to understand, the filename has no
 meaning to terraform.
 
-- [`terraform/18_app_execution_role.tf`](terraform/11_app_execution_role.tf):
+- [`terraform/17_app_execution_role.tf`](terraform/17_app_execution_role.tf):
   creates an IAM role (**aws_iam_role.shinyproxy-app-execution-role**) that can
   be used as the execution role for apps.
   - the `assume_role_policy` (i.e. trust policy) gives permission for ECS to use
@@ -51,7 +55,7 @@ meaning to terraform.
     However, for the sake of clarity it's better to use a separate role for
     ShinyProxy and for the apps. In addition, this makes it easier to extend
     either role.
-- [`terraform/19_shinyproxy_task_role_policy.tf`](terraform/12_shinyproxy_task_role_policy.tf):
+- [`terraform/18_shinyproxy_task_role_policy.tf`](terraform/18_shinyproxy_task_role_policy.tf):
   provides an additional permission to the ShinyProxy Task role, such that
   ShinyProxy is allowed to create ECS tasks using the Execution role.
   - **aws_iam_policy.shinyproxy-pass-app-execution-role-policy**: an IAM policy

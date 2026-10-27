@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "shinyproxy-operator" {
   container_definitions    = jsonencode([
     {
       name         = "shinyproxy-operator"
-      image        = "openanalytics/shinyproxy-operator-snapshot:2.4.0-SNAPSHOT-20261027.083853"
+      image        = "openanalytics/shinyproxy-operator-snapshot:2.4.0-SNAPSHOT-20261027.133047"
       portMappings = [
         {
           containerPort = 8080

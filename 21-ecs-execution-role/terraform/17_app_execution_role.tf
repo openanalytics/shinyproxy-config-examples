@@ -29,7 +29,7 @@ resource "aws_iam_role" "shinyproxy-app-execution-role" {
 }
 
 resource "aws_iam_role_policy" "shinyproxy-app-execution-role-ecs-logs" {
-  name = "ecs-logs"
+  name = "${var.}ecs-logs"
   role = aws_iam_role.shinyproxy-app-execution-role.id
 
   policy = jsonencode({
